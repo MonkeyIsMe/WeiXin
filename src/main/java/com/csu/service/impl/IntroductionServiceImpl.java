@@ -2,10 +2,13 @@ package com.csu.service.impl;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.csu.dao.IntroductionDAO;
 import com.csu.model.Introduction;
 import com.csu.service.IntroductionService;
 
+@Transactional
 public class IntroductionServiceImpl implements IntroductionService{
 
 	private IntroductionDAO Id;

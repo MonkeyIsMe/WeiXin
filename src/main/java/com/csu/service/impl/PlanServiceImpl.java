@@ -2,10 +2,13 @@ package com.csu.service.impl;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.csu.dao.PlanDAO;
 import com.csu.model.Plan;
 import com.csu.service.PlanService;
 
+@Transactional
 public class PlanServiceImpl implements PlanService{
 	
 	private PlanDAO pd;

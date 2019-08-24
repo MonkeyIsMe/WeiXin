@@ -1,24 +1,49 @@
 package com.csu.test;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.csu.dao.PlanDAO;
+import com.csu.model.Plan;
+import com.csu.model.User;
 import com.csu.po.AccessToken;
+import com.csu.service.PlanService;
+import com.csu.util.HibernateUtil;
 import com.csu.util.WeixinUtil;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:applicationContext.xml")
 public class WeixinTest {
-	public static void main(String[] args) {
-		try {
-			//AccessToken token = WeixinUtil.getAccessToken();
-			//System.out.println("票据"+token.getToken());
-			//System.out.println("有效时间"+token.getExpiresIn());
-			
-			//String path = "D:/imooc.jpg";
-			//String mediaId = WeixinUtil.upload(path, token.getToken(), "thumb");
-			//System.out.println(mediaId);
-			
-			String result = WeixinUtil.translate("my name is laobi");
-			//String result = WeixinUtil.translateFull("");
-			System.out.println(result);
-		} catch (Exception e) {
-			e.printStackTrace();
+	
+	@Resource(name="PlanDAO")
+	private PlanDAO pd;
+	
+	@Resource(name="PlanService")
+	private PlanService ps;
+	
+	@Resource(name="sessionFactory")
+	private  SessionFactory sf;
+	
+	
+	@Test
+	public void QueryAllPlan() {
+		Plan pan = pd.queryPlan(1);
+		
+		List<Plan> PlanList = ps.GetAllPlan();
+		for(Plan plan : PlanList) {
+			System.out.println(plan.toString());
 		}
 	}
 }

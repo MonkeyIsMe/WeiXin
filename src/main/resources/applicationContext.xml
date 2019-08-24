@@ -49,15 +49,15 @@
 	
 	
 	
-	 <bean name="IntroductionService" class="com.csu.service.IntroductionService" >
+	 <bean name="IntroductionService" class="com.csu.service.impl.IntroductionServiceImpl" >
 		<property name="Id" ref="IntroductionDAO" ></property>
 	</bean>
 	
-	 <bean name="PlanService" class="com.csu.service.Impl.PlanServiceImpl" >
+	 <bean name="PlanService" class="com.csu.service.impl.PlanServiceImpl" >
 		<property name="pd" ref="PlanDAO" ></property>
 	</bean>
 	
-	 <bean name="UserService" class="com.csu.service.Impl.UserServiceImpl" >
+	 <bean name="UserService" class="com.csu.service.impl.UserServiceImpl" >
 		<property name="ud" ref="UserDAO" ></property>
 	</bean>
 	

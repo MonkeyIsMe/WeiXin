@@ -2,10 +2,13 @@ package com.csu.service.impl;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.csu.dao.UserDAO;
 import com.csu.model.User;
 import com.csu.service.UserService;
 
+@Transactional
 public class UserServiceImpl implements UserService{
 
 	private UserDAO ud;
