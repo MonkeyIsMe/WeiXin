@@ -16,9 +16,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.csu.dao.PlanDAO;
+import com.csu.model.Company;
 import com.csu.model.Plan;
 import com.csu.model.User;
 import com.csu.po.AccessToken;
+import com.csu.service.CompanyService;
 import com.csu.service.PlanService;
 import com.csu.util.HibernateUtil;
 import com.csu.util.WeixinUtil;
@@ -30,6 +32,9 @@ public class WeixinTest {
 	@Resource(name="PlanDAO")
 	private PlanDAO pd;
 	
+	@Resource(name="CompanyService")
+	private CompanyService cs;
+	
 	@Resource(name="PlanService")
 	private PlanService ps;
 	
@@ -38,12 +43,8 @@ public class WeixinTest {
 	
 	
 	@Test
-	public void QueryAllPlan() {
-		Plan pan = pd.queryPlan(1);
-		
-		List<Plan> PlanList = ps.GetAllPlan();
-		for(Plan plan : PlanList) {
-			System.out.println(plan.toString());
-		}
+	public void Query() {
+		List<Company> CompanyList = cs.QueryAllCompanyByPageSize(1, 50);
+		System.out.println(CompanyList.size());
 	}
 }

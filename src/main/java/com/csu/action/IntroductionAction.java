@@ -19,6 +19,7 @@ public class IntroductionAction extends ActionSupport{
 	private IntroductionService IntroductionService;
 	private Introduction introduction;
 	
+	
 	public IntroductionService getIntroductionService() {
 		return IntroductionService;
 	}

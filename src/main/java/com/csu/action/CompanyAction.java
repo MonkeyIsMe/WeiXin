@@ -19,6 +19,14 @@ public class CompanyAction extends ActionSupport{
 	private CompanyService CompanyService;
 	private Company company = new Company();
 	
+	public CompanyService getCompanyService() {
+		return CompanyService;
+	}
+
+	public void setCompanyService(CompanyService companyService) {
+		CompanyService = companyService;
+	}
+
 	public void AddCompany() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -133,8 +141,8 @@ public class CompanyAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String rows = request.getParameter("rows");
-		String page = request.getParameter("page");
+		String rows = request.getParameter("page");
+		String page = request.getParameter("limit");
 		
 		int row = Integer.valueOf(rows);		
 		int PageSize = Integer.valueOf(page);
