@@ -1,8 +1,31 @@
+var row = 1;  //页数
+var count; //总记录数
+
+$(function(){
+	$.ajaxSettings.async = false;
+	$.post(
+			"CountUser.action",
+			{
+			},
+			function(data){
+				var data = JSON.parse(data);
+				//console.log(data);
+				var sum = data.cnt;
+				count = Math.ceil(sum/25);
+				var total = "共" + Math.ceil(sum/25) + "页";
+				$("#TotalPage").append(total);
+				$("#NowPage").append("，当前第" + row + "页");
+			}
+			);
+	
+});
+
 $(function(){
     $.post(
-        "QueryAllUser.action",
+        "QueryAllUserByPageSize.action",
         {
-        	
+            page:row,
+            limit:25
         },
         function(data) {
             var data = JSON.parse(data);
@@ -39,7 +62,7 @@ function PrevPage(){
 		row--;
 		$("#KnowList").html("");
 	    $.post(
-	            "QueryAllUser.action",
+	            "QueryAllUserByPageSize.action",
 	            {
 	                page:row,
 	                limit:25
@@ -79,7 +102,7 @@ function NextPage(){
 		row ++;
 		$("#KnowList").html("");
 	    $.post(
-	            "QueryAllUser.action",
+	            "QueryAllUserByPageSize.action",
 	            {
 	                page:row,
 	                limit:25
@@ -113,5 +136,5 @@ function NextPage(){
 
 
 function refresh(){
-	window.location.replace("PlanUser.html");
+	window.location.replace("UserManage.html");
 }
