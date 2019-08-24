@@ -1,0 +1,54 @@
+package com.csu.dao.impl;
+
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate5.HibernateCallback;
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.csu.dao.PlanDAO;
+import com.csu.model.Plan;
+
+
+@Transactional
+public class PlanDAOImpl extends HibernateDaoSupport implements PlanDAO{
+
+	public void addPlan(Plan plan) {
+		// TODO Auto-generated method stub
+		getHibernateTemplate().save(plan);
+	}
+
+	public void deletePlan(Plan plan) {
+		// TODO Auto-generated method stub
+		getHibernateTemplate().delete(plan);
+	}
+
+	public void updatePlan(Plan plan) {
+		// TODO Auto-generated method stub
+		getHibernateTemplate().update(plan);
+	}
+
+	public Plan queryPlan(int id) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().get(Plan.class, id);
+	}
+
+	public List<Plan> GetAllPlan() {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Plan>>() {
+
+			public List<Plan> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Plan";
+				Query query = session.createQuery(hql);
+				List<Plan> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
+}

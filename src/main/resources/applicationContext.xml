@@ -1,0 +1,77 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:aop="http://www.springframework.org/schema/aop" 
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+							http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+							http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd 
+							http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
+	
+	<!-- 使用外部的hibernate.cfg.xml配置信息 -->
+	<bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" >
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" ></property>
+	</bean>
+	
+	<!-- 核心事务管理器 -->
+	<bean name="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+
+	
+	<!-- 开启注解事务-->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager" >
+		<tx:attributes>
+			<tx:method name="save*" isolation="READ_COMMITTED" propagation="REQUIRED" read-only="false" />
+			<tx:method name="persist*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
+			<tx:method name="update*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
+			<tx:method name="modify*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
+			<tx:method name="delete*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
+			<tx:method name="remove*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false" />
+			<tx:method name="get*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="true" />
+			<tx:method name="find*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<bean name="IntroductionAction" class="com.csu.action.IntroductionAction" scope="prototype" >
+		<property name="IntroductionService" ref="IntroductionService" ></property>
+	</bean>
+	
+	<bean name="PlanAction" class="com.csu.action.PlanAction" scope="prototype" >
+		<property name="PlanService" ref="PlanService" ></property>
+	</bean>
+	
+	<bean name="UserAction" class="com.csu.action.UserAction" scope="prototype" >
+		<property name="UserService" ref="UserService" ></property>
+	</bean>
+	
+	
+	
+	 <bean name="IntroductionService" class="com.csu.service.IntroductionService" >
+		<property name="Id" ref="IntroductionDAO" ></property>
+	</bean>
+	
+	 <bean name="PlanService" class="com.csu.service.Impl.PlanServiceImpl" >
+		<property name="pd" ref="PlanDAO" ></property>
+	</bean>
+	
+	 <bean name="UserService" class="com.csu.service.Impl.UserServiceImpl" >
+		<property name="ud" ref="UserDAO" ></property>
+	</bean>
+	
+	
+	<bean name="UserDAO" class="com.csu.dao.impl.UserDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	
+	<bean name="IntroductionDAO" class="com.csu.dao.impl.IntroductionDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	
+	<bean name="PlanDAO" class="com.csu.dao.impl.PlanDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	
+</beans>
