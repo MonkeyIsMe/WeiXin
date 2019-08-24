@@ -21,7 +21,7 @@ public class Role {
 	@Column(name="role_name")
 	private String roleName;
 	
-	@Column(name="conpany_info")
+	@Column(name="role_info")
 	private String roleInfo;
 
 	public int getroleId() {

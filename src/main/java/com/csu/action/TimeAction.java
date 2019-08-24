@@ -135,8 +135,8 @@ public class TimeAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String rows = request.getParameter("rows");
-		String page = request.getParameter("page");
+		String rows = request.getParameter("page");
+		String page = request.getParameter("limit");
 		
 		int row = Integer.valueOf(rows);		
 		int PageSize = Integer.valueOf(page);
