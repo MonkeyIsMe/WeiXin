@@ -57,6 +57,9 @@
 <mapping class="com.csu.model.Plan" />
 <mapping class="com.csu.model.User" />
 <mapping class="com.csu.model.Introduction" />
+<mapping class="com.csu.model.Company" />
+<mapping class="com.csu.model.Time" />
+<mapping class="com.csu.model.Role" />
 
 </session-factory>
 

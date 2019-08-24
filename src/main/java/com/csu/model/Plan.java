@@ -21,8 +21,8 @@ public class Plan {
 	@Column(name="plan_info")
 	private String PlanInfo;
 	
-	@Column(name="plan_time")
-	private String PlanTime;
+	@Column(name="time_id")
+	private int TimeId;
 	
 	@Column(name="plan_tittle")
 	private String PlanTittle;
@@ -43,12 +43,12 @@ public class Plan {
 		PlanInfo = planInfo;
 	}
 
-	public String getPlanTime() {
-		return PlanTime;
+	public int getTimeId() {
+		return TimeId;
 	}
 
-	public void setPlanTime(String planTime) {
-		PlanTime = planTime;
+	public void setTimeId(int timeId) {
+		TimeId = timeId;
 	}
 
 	public String getPlanTittle() {
@@ -63,7 +63,7 @@ public class Plan {
 		JSONObject jo = new JSONObject();
 		jo.put("PlanId", this.PlanId);
 		jo.put("PlanInfo", this.PlanInfo);
-		jo.put("PlanTime", this.PlanTime);
+		jo.put("TimeId", this.TimeId);
 		jo.put("PlanTittle", this.PlanTittle);
 		return jo;
 	}

@@ -40,11 +40,13 @@ public class PlanAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String plan_info = request.getParameter("plan_info");
-		String plan_time = request.getParameter("plan_time");
+		String time_id = request.getParameter("time_id");
 		String plan_tittle = request.getParameter("plan_tittle");
 		
+		int tid = Integer.valueOf(time_id);
+		
 		plan.setPlanInfo(plan_info);
-		plan.setPlanTime(plan_time);
+		plan.setTimeId(tid);
 		plan.setPlanTittle(plan_tittle);
 		
 		PlanService.AddPlan(plan);
@@ -61,11 +63,13 @@ public class PlanAction extends ActionSupport{
 		out = ServletActionContext.getResponse().getWriter();
 		
 		String plan_info = request.getParameter("plan_info");
-		String plan_time = request.getParameter("plan_time");
+		String time_id = request.getParameter("time_id");
 		String plan_tittle = request.getParameter("plan_tittle");
 		
+		int tid = Integer.valueOf(time_id);
+		
 		plan.setPlanInfo(plan_info);
-		plan.setPlanTime(plan_time);
+		plan.setTimeId(tid);
 		plan.setPlanTittle(plan_tittle);
 		
 		PlanService.AddPlan(plan);
@@ -83,11 +87,13 @@ public class PlanAction extends ActionSupport{
 		
 		String plan_id = request.getParameter("plan_id");
 		String plan_info = request.getParameter("plan_info");
-		String plan_time = request.getParameter("plan_time");
+		String time_id = request.getParameter("time_id");
 		String plan_tittle = request.getParameter("plan_tittle");
 		
 		int pid = Integer.valueOf(plan_id);
 		plan = PlanService.QueryPlan(pid);
+		
+		int tid = Integer.valueOf(time_id);
 		
 		if(plan == null) {
 			out.println("Fail");
@@ -97,7 +103,7 @@ public class PlanAction extends ActionSupport{
 		}
 		
 		plan.setPlanInfo(plan_info);
-		plan.setPlanTime(plan_time);
+		plan.setTimeId(tid);
 		plan.setPlanTittle(plan_tittle);
 		
 		PlanService.AddPlan(plan);
