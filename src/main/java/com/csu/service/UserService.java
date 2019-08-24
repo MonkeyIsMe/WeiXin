@@ -17,4 +17,8 @@ public interface UserService {
 	public List<User> GetAllUser();	
 	
 	public User QueryUserByNumber(String UserNumber);
+	
+	public List<User> GetAllUserByPageSize(int row,int PageSize);	
+	
+	public int CountUser();	
 }

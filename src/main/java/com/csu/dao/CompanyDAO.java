@@ -14,6 +14,9 @@ public interface CompanyDAO {
 	
 	public Company queryCompany(int id);
 	
-	public List<Company> QueryAllCompany(int row,int PageSize);
+	public List<Company> QueryAllCompanyByPageSize(int row,int PageSize);
 	
+	public List<Company> QueryAllCompany();
+	
+	public int CountCompany();
 }

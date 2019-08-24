@@ -14,5 +14,9 @@ public interface TimeService {
 	
 	public Time QueryTime(int id);
 	
-	public List<Time> QueryAllTime(int row,int PageSize);
+	public List<Time> QueryAllTimeByPageSize(int row,int PageSize);
+	
+	public List<Time> QueryAllTime();
+	
+	public int CountTime();
 }

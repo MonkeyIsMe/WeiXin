@@ -45,6 +45,16 @@ public class IntroductionServiceImpl implements IntroductionService{
 		// TODO Auto-generated method stub
 		return Id.GetAllIntroduction();
 	}
+
+	public List<Introduction> GetAllIntroductionByPageSize(int row, int PageSize) {
+		// TODO Auto-generated method stub
+		return Id.GetAllIntroductionByPageSize(row, PageSize);
+	}
+
+	public int CountIntroduction() {
+		// TODO Auto-generated method stub
+		return Id.CountIntroduction();
+	}
 	
 	
 	

@@ -156,5 +156,50 @@ public class IntroductionAction extends ActionSupport{
 		
 	}
 	
+	public void QueryAllIntroductionByPageSize() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String rows = request.getParameter("rows");
+		String page = request.getParameter("page");
+		
+		int row = Integer.valueOf(rows);		
+		int PageSize = Integer.valueOf(page);
+		
+		List<Introduction> IntroductionList = IntroductionService.GetAllIntroductionByPageSize(row, PageSize);
+		
+		JSONArray ja = JSONArray.fromObject(IntroductionList);
+		
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+		
+	}
+	
+	public void CountIntroduction() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		int cnt = IntroductionService.CountIntroduction();
+		
+		JSONObject jo = new JSONObject();
+		
+		jo.put("cnt", cnt);
+		
+		out.println(jo.toString());
+        out.flush(); 
+        out.close();
+		
+	}
 	
 }

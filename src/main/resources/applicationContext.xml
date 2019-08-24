@@ -47,6 +47,18 @@
 		<property name="UserService" ref="UserService" ></property>
 	</bean>
 	
+	<bean name="CompanyAction" class="com.csu.action.CompanyAction" scope="prototype" >
+		<property name="CompanyService" ref="CompanyService" ></property>
+	</bean>
+	
+	<bean name="RoleAction" class="com.csu.action.RoleAction" scope="prototype" >
+		<property name="RoleService" ref="RoleService" ></property>
+	</bean>
+	
+	<bean name="TimeAction" class="com.csu.action.TimeAction" scope="prototype" >
+		<property name="TimeService" ref="TimeService" ></property>
+	</bean>
+	
 	
 	
 	 <bean name="IntroductionService" class="com.csu.service.impl.IntroductionServiceImpl" >
@@ -61,6 +73,19 @@
 		<property name="ud" ref="UserDAO" ></property>
 	</bean>
 	
+	 <bean name="CompanyService" class="com.csu.service.impl.CompanyServiceImpl" >
+		<property name="cd" ref="CompanyDAO" ></property>
+	</bean>
+	
+	 <bean name="RoleService" class="com.csu.service.impl.RoleServiceImpl" >
+		<property name="rd" ref="RoleDAO" ></property>
+	</bean>
+	
+	 <bean name="TimeService" class="com.csu.service.impl.TimeServiceImpl" >
+		<property name="td" ref="TimeDAO" ></property>
+	</bean>
+	
+	
 	
 	<bean name="UserDAO" class="com.csu.dao.impl.UserDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
@@ -73,5 +98,19 @@
 	<bean name="PlanDAO" class="com.csu.dao.impl.PlanDAOImpl" >
 		<property name="sessionFactory" ref="sessionFactory" ></property>
 	</bean>
+		
+	<bean name="RoleDAO" class="com.csu.dao.impl.RoleDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	
+	<bean name="CompanyDAO" class="com.csu.dao.impl.CompanyDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	
+	<bean name="TimeDAO" class="com.csu.dao.impl.TimeDAOImpl" >
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	
+	
 	
 </beans>

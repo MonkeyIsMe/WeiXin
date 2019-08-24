@@ -41,9 +41,19 @@ public class RoleServiceImpl implements RoleService{
 		return rd.queryRole(id);
 	}
 
-	public List<Role> QueryAllRole(int row, int PageSize) {
+	public List<Role> QueryAllRoleByPageSize(int row, int PageSize) {
 		// TODO Auto-generated method stub
-		return rd.QueryAllRole(row, PageSize);
+		return rd.QueryAllRoleByPageSize(row, PageSize);
+	}
+
+	public List<Role> QueryAllRole() {
+		// TODO Auto-generated method stub
+		return rd.QueryAllRole();
+	}
+
+	public int CountRole() {
+		// TODO Auto-generated method stub
+		return rd.CountRole();
 	}
 
 }

@@ -31,6 +31,10 @@
 			</action>
 			<action name="QueryAllIntroduction" class="IntroductionAction" method="QueryAllIntroduction" >
 			</action>
+			<action name="QueryAllIntroductionByPageSize" class="IntroductionAction" method="QueryAllIntroductionByPageSize" >
+			</action>
+			<action name="CountIntroduction" class="IntroductionAction" method="CountIntroduction" >
+			</action>
 			
 			<action name="AddPlan" class="PlanAction" method="AddPlan" >
 			</action>
@@ -41,6 +45,10 @@
 			<action name="QueryPlan" class="PlanAction" method="QueryPlan" >
 			</action>
 			<action name="QueryAllPlan" class="PlanAction" method="QueryAllPlan" >
+			</action>
+			<action name="QueryAllPlanByPageSize" class="PlanAction" method="QueryAllPlanByPageSize" >
+			</action>
+			<action name="CountPlan" class="PlanAction" method="CountPlan" >
 			</action>
 			
 			<action name="AddUser" class="UserAction" method="AddUser" >
@@ -55,7 +63,55 @@
 			</action>
 			<action name="QueryUserByNumber" class="UserAction" method="QueryUserByNumber" >
 			</action>
+			<action name="CountUser" class="UserAction" method="CountUser" >
+			</action>
+			<action name="QueryAllUserByPageSize" class="UserAction" method="QueryAllUserByPageSize" >
+			</action>
 			
+			<action name="AddCompany" class="UserAction" method="AddCompany" >
+			</action>
+			<action name="UpdateCompany" class="UserAction" method="UpdateCompany" >
+			</action>
+			<action name="QueryCompany" class="UserAction" method="QueryCompany" >
+			</action>
+			<action name="DeleteCompany" class="UserAction" method="DeleteCompany" >
+			</action>
+			<action name="QueryAllCompanyByPageSize" class="UserAction" method="QueryAllCompanyByPageSize" >
+			</action>
+			<action name="QueryAllCompany" class="UserAction" method="QueryAllCompany" >
+			</action>				
+			<action name="CountCompany" class="UserAction" method="CountCompany" >
+			</action>
+									
+			<action name="AddRole" class="UserAction" method="AddRole" >
+			</action>
+			<action name="DeleteRole" class="UserAction" method="DeleteRole" >
+			</action>
+			<action name="UpdateRole" class="UserAction" method="UpdateRole" >
+			</action>
+			<action name="QueryRole" class="UserAction" method="QueryRole" >
+			</action>
+			<action name="QueryAllRoleByPageSize" class="UserAction" method="QueryAllRoleByPageSize" >
+			</action>
+			<action name="CountRole" class="UserAction" method="CountRole" >
+			</action>				
+			<action name="QueryAllRole" class="UserAction" method="QueryAllRole" >
+			</action>
+												
+			<action name="AddTime" class="UserAction" method="AddTime" >
+			</action>
+			<action name="UpdateTime" class="UserAction" method="UpdateTime" >
+			</action>
+			<action name="DeleteTime" class="UserAction" method="DeleteTime" >
+			</action>
+			<action name="QueryTime" class="UserAction" method="QueryTime" >
+			</action>
+			<action name="QueryAllTimeByPageSize" class="UserAction" method="QueryAllTimeByPageSize" >
+			</action>
+			<action name="QueryAllTime" class="UserAction" method="QueryAllTime" >
+			</action>				
+			<action name="CountTime" class="UserAction" method="CountTime" >
+			</action>
 	</package>
 </struts>
 	

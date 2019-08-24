@@ -126,7 +126,7 @@ public class TimeAction extends ActionSupport{
 		return ;
 	}
 	
-	public void QueryAllTime() throws Exception{
+	public void QueryAllTimeByPageSize() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
@@ -141,7 +141,7 @@ public class TimeAction extends ActionSupport{
 		int row = Integer.valueOf(rows);		
 		int PageSize = Integer.valueOf(page);
 		
-		List<Time> TimeList = TimeService.QueryAllTime(row, PageSize);
+		List<Time> TimeList = TimeService.QueryAllTimeByPageSize(row, PageSize);
 		
 		JSONArray ja = JSONArray.fromObject(TimeList);
 		
@@ -150,5 +150,41 @@ public class TimeAction extends ActionSupport{
         out.close();
 	}
 	
+	public void QueryAllTime() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		List<Time> TimeList = TimeService.QueryAllTime();
+		
+		JSONArray ja = JSONArray.fromObject(TimeList);
+		
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+	}
+	
+	public void CountTime() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		int cnt = TimeService.CountTime();
+		
+		JSONObject jo = new JSONObject();
+		jo.put("cnt", cnt);
+		
+		out.println(jo.toString());
+        out.flush(); 
+        out.close();
+	}
 
 }

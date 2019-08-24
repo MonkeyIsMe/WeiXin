@@ -35,7 +35,7 @@ public class TimeDAOImpl extends HibernateDaoSupport implements TimeDAO{
 		return getHibernateTemplate().get(Time.class, id);
 	}
 
-	public List<Time> QueryAllTime(final int row, final int PageSize) {
+	public List<Time> QueryAllTimeByPageSize(final int row, final int PageSize) {
 		// TODO Auto-generated method stub
 		return getHibernateTemplate().execute(new HibernateCallback<List<Time>>() {
 
@@ -49,6 +49,27 @@ public class TimeDAOImpl extends HibernateDaoSupport implements TimeDAO{
 				return result;
 			}
 		});
+	}
+
+	public List<Time> QueryAllTime() {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Time>>() {
+
+			public List<Time> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Time";
+				Query query = session.createQuery(hql);
+				List<Time> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
+	public int CountTime() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Time as Time";
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
 	}
 
 }

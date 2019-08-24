@@ -41,9 +41,19 @@ public class CompanyServiceImpl implements CompanyService{
 		return cd.queryCompany(id);
 	}
 
-	public List<Company> QueryAllCompany(int row, int PageSize) {
+	public List<Company> QueryAllCompanyByPageSize(int row, int PageSize) {
 		// TODO Auto-generated method stub
-		return cd.QueryAllCompany(row, PageSize);
+		return cd.QueryAllCompanyByPageSize(row, PageSize);
+	}
+
+	public int CountCompany() {
+		// TODO Auto-generated method stub
+		return cd.CountCompany();
+	}
+
+	public List<Company> QueryAllCompany() {
+		// TODO Auto-generated method stub
+		return cd.QueryAllCompany();
 	}
 
 }

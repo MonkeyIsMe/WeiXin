@@ -51,4 +51,26 @@ public class IntroductionDAOImpl extends HibernateDaoSupport implements Introduc
 		});
 	}
 
+	public List<Introduction> GetAllIntroductionByPageSize(final int row, final int PageSize) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Introduction>>() {
+
+			public List<Introduction> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Introduction";
+				Query query = session.createQuery(hql).setFirstResult(
+                        (row - 1) * PageSize).setMaxResults(PageSize);
+				List<Introduction> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
+	public int CountIntroduction() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Introduction as Introduction";
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 }

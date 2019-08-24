@@ -124,7 +124,7 @@ public class CompanyAction extends ActionSupport{
 		
 	}
 	
-	public void QueryAllCompany() throws Exception{
+	public void QueryAllCompanyByPageSize() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
@@ -139,11 +139,52 @@ public class CompanyAction extends ActionSupport{
 		int row = Integer.valueOf(rows);		
 		int PageSize = Integer.valueOf(page);
 		
-		List<Company> CompanyList = CompanyService.QueryAllCompany(row, PageSize);
+		List<Company> CompanyList = CompanyService.QueryAllCompanyByPageSize(row, PageSize);
 		
 		JSONArray ja = JSONArray.fromObject(CompanyList);
 		
 		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+		
+	}
+	
+	public void QueryAllCompany() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		
+		List<Company> CompanyList = CompanyService.QueryAllCompany();
+		
+		JSONArray ja = JSONArray.fromObject(CompanyList);
+		
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+		
+	}
+	
+	public void CountCompany() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		int cnt = CompanyService.CountCompany();
+		
+		JSONObject jo = new JSONObject();
+		
+		jo.put("cnt",cnt);
+		
+		out.println(jo.toString());
         out.flush(); 
         out.close();
 		

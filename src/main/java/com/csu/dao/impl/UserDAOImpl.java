@@ -66,4 +66,26 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
 		});
 	}
 
+	public List<User> GetAllUserByPageSize(final int row, final int PageSize) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<User>>() {
+
+			public List<User> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from User";
+				Query query = session.createQuery(hql).setFirstResult(
+                        (row - 1) * PageSize).setMaxResults(PageSize);;
+				List<User> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
+	public int CountUser() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from User as User";
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 }

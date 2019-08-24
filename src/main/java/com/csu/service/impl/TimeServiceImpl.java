@@ -42,9 +42,19 @@ public class TimeServiceImpl implements TimeService{
 		return td.queryTime(id);
 	}
 
-	public List<Time> QueryAllTime(int row, int PageSize) {
+	public List<Time> QueryAllTimeByPageSize(int row, int PageSize) {
 		// TODO Auto-generated method stub
-		return td.QueryAllTime(row, PageSize);
+		return td.QueryAllTimeByPageSize(row, PageSize);
+	}
+
+	public List<Time> QueryAllTime() {
+		// TODO Auto-generated method stub
+		return td.QueryAllTime();
+	}
+
+	public int CountTime() {
+		// TODO Auto-generated method stub
+		return td.CountTime();
 	}
 
 }

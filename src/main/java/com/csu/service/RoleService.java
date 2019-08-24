@@ -14,6 +14,9 @@ public interface RoleService {
 	
 	public Role QueryRole(int id);
 	
-	public List<Role> QueryAllRole(int row,int PageSize);
+	public List<Role> QueryAllRoleByPageSize(int row,int PageSize);
 	
+	public List<Role> QueryAllRole();
+	
+	public int CountRole();
 }

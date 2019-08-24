@@ -137,7 +137,7 @@ public class RoleAction extends ActionSupport{
 		return ;
 	}
 	
-	public void QueryAllRole() throws Exception{
+	public void QueryAllRoleByPageSize() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
 		HttpServletRequest request= ServletActionContext.getRequest();
@@ -152,7 +152,44 @@ public class RoleAction extends ActionSupport{
 		int row = Integer.valueOf(rows);		
 		int PageSize = Integer.valueOf(page);
 		
-		List<Role> RoleList = RoleService.QueryAllRole(row, PageSize);
+		List<Role> RoleList = RoleService.QueryAllRoleByPageSize(row, PageSize);
+		
+		JSONArray ja = JSONArray.fromObject(RoleList);
+		
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+	}
+	
+	public void CountRole() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		int cnt = RoleService.CountRole();
+		
+		JSONObject jo = new JSONObject();
+		jo.put("cnt", cnt);
+		
+		out.println(jo.toString());
+        out.flush(); 
+        out.close();
+	}
+	
+	public void QueryAllRole() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		List<Role> RoleList = RoleService.QueryAllRole();
 		
 		JSONArray ja = JSONArray.fromObject(RoleList);
 		

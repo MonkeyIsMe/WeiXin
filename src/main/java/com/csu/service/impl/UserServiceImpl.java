@@ -54,6 +54,16 @@ public class UserServiceImpl implements UserService{
 		user = UserList.get(0);
 		return user;
 	}
+
+	public List<User> GetAllUserByPageSize(int row, int PageSize) {
+		// TODO Auto-generated method stub
+		return ud.GetAllUserByPageSize(row, PageSize);
+	}
+
+	public int CountUser() {
+		// TODO Auto-generated method stub
+		return ud.CountUser();
+	}
 	
 	
 	

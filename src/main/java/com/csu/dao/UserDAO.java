@@ -17,4 +17,8 @@ public interface UserDAO {
 	public List<User> GetAllUser();	
 	
 	public List<User> QueryUserByNumber(String UserNumber);
+	
+	public List<User> GetAllUserByPageSize(int row,int PageSize);	
+	
+	public int CountUser();	
 }

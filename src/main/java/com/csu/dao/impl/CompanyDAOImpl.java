@@ -36,7 +36,7 @@ public class CompanyDAOImpl extends HibernateDaoSupport implements CompanyDAO{
 		return getHibernateTemplate().get(Company.class, id);
 	}
 
-	public List<Company> QueryAllCompany(final int row, final int PageSize) {
+	public List<Company> QueryAllCompanyByPageSize(final int row, final int PageSize) {
 		// TODO Auto-generated method stub
 		return getHibernateTemplate().execute(new HibernateCallback<List<Company>>() {
 
@@ -50,6 +50,27 @@ public class CompanyDAOImpl extends HibernateDaoSupport implements CompanyDAO{
 				return result;
 			}
 		});
+	}
+
+	public List<Company> QueryAllCompany() {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Company>>() {
+
+			public List<Company> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Company";
+				Query query = session.createQuery(hql);
+				List<Company> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
+	public int CountCompany() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Company as Company";
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
 	}
 
 }

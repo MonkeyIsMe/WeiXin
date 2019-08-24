@@ -14,6 +14,9 @@ public interface CompanyService {
 	
 	public Company QueryCompany(int id);
 	
-	public List<Company> QueryAllCompany(int row,int PageSize);
+	public List<Company> QueryAllCompanyByPageSize(int row,int PageSize);
 	
+	public int CountCompany();
+	
+	public List<Company> QueryAllCompany();
 }

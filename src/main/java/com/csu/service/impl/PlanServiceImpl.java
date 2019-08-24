@@ -46,6 +46,16 @@ public class PlanServiceImpl implements PlanService{
 		// TODO Auto-generated method stub
 		return pd.GetAllPlan();
 	}
+
+	public List<Plan> GetAllPlanByPageSize(int row, int PageSize) {
+		// TODO Auto-generated method stub
+		return pd.GetAllPlanByPageSize(row, PageSize);
+	}
+
+	public int CountPlan() {
+		// TODO Auto-generated method stub
+		return pd.CountPlan();
+	}
 	
 	
 	

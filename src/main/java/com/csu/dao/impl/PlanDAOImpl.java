@@ -51,4 +51,26 @@ public class PlanDAOImpl extends HibernateDaoSupport implements PlanDAO{
 		});
 	}
 
+	public List<Plan> GetAllPlanByPageSize(final int row,final int PageSize) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Plan>>() {
+
+			public List<Plan> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Plan";
+				Query query = session.createQuery(hql).setFirstResult(
+                        (row - 1) * PageSize).setMaxResults(PageSize);
+				List<Plan> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
+	public int CountPlan() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Plan as Plan";
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
+	}
+
 }

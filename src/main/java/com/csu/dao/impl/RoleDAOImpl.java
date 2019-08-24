@@ -36,7 +36,7 @@ public class RoleDAOImpl extends HibernateDaoSupport implements RoleDAO{
 		return getHibernateTemplate().get(Role.class, id);
 	}
 
-	public List<Role> QueryAllRole(final int row, final int PageSize) {
+	public List<Role> QueryAllRoleByPageSize(final int row, final int PageSize) {
 		// TODO Auto-generated method stub
 		return getHibernateTemplate().execute(new HibernateCallback<List<Role>>() {
 
@@ -50,6 +50,27 @@ public class RoleDAOImpl extends HibernateDaoSupport implements RoleDAO{
 				return result;
 			}
 		});
+	}
+
+	public List<Role> QueryAllRole() {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Role>>() {
+
+			public List<Role> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Role";
+				Query query = session.createQuery(hql);
+				List<Role> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
+	public int CountRole() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from Role as Role";
+		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
 	}
 
 }

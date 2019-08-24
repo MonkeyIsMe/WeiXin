@@ -16,4 +16,8 @@ public interface PlanService {
 	
 	public List<Plan> GetAllPlan();
 	
+	public List<Plan> GetAllPlanByPageSize(int row,int PageSize);
+	
+	public int CountPlan();
+	
 }
