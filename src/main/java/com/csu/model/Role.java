@@ -24,30 +24,32 @@ public class Role {
 	@Column(name="role_info")
 	private String roleInfo;
 
-	public int getroleId() {
+
+	
+	public int getRoleId() {
 		return roleId;
 	}
 
-	public void setroleId(int roleId) {
-		roleId = roleId;
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
 
-	public String getroleName() {
+	public String getRoleName() {
 		return roleName;
 	}
 
-	public void setroleName(String roleName) {
-		roleName = roleName;
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 
-	public String getroleInfo() {
+	public String getRoleInfo() {
 		return roleInfo;
 	}
 
-	public void setroleInfo(String roleInfo) {
-		roleInfo = roleInfo;
+	public void setRoleInfo(String roleInfo) {
+		this.roleInfo = roleInfo;
 	}
-	
+
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("roleId", this.roleId);

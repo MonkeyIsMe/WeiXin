@@ -41,8 +41,8 @@ public class RoleAction extends ActionSupport{
 		String role_name = request.getParameter("role_name");
 		String role_info = request.getParameter("role_info");
 		
-		role.setroleName(role_name);
-		role.setroleInfo(role_info);
+		role.setRoleName(role_name);
+		role.setRoleInfo(role_info);
 		
 		RoleService.AddRole(role);
 		
@@ -100,8 +100,8 @@ public class RoleAction extends ActionSupport{
 			return ;
 		}
 		
-		role.setroleName(role_name);
-		role.setroleInfo(role_info);
+		role.setRoleName(role_name);
+		role.setRoleInfo(role_info);
 		
 		RoleService.UpdateRole(role);
 		

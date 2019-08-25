@@ -1,6 +1,9 @@
 var row = 1;  //页数
 var count; //总记录数
 
+var id;
+var name;
+
 $(function(){
 	$.ajaxSettings.async = false;
 	$.post(
@@ -38,8 +41,8 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].timeId +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].timeName +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-			        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px"></span></a>'
-			        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px"></span></a>'
+			        		'<a ><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+			        		+'<a ><span class="delete glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
                     $trTemp.appendTo("#KnowList");
@@ -72,8 +75,8 @@ function PrevPage(){
 				        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].timeId +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].timeName +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-				        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px"></span></a>'
-				        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px"></span></a>'
+				        		'<a ><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+				        		+'<a ><span class="delete glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 				        		+"</td>");
 	                    // $("#J_TbData").append($trTemp);
 	                    $trTemp.appendTo("#KnowList");
@@ -106,8 +109,8 @@ function NextPage(){
 				        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].timeId +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].timeName +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
-				        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px"></span></a>'
-				        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px"></span></a>'
+				        		'<a ><span class="delete glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px" data-toggle="modal" data-target="#update_Modal"></span></a>'
+				        		+'<a ><span class="delete glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 				        		+"</td>");
 	                    // $("#J_TbData").append($trTemp);
 	                    $trTemp.appendTo("#KnowList");
@@ -118,6 +121,88 @@ function NextPage(){
 
 }
 
+$(document).ready(function(){
+	
+	  $("#myTable").on('click','.delete',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    var col2=currentRow.find("td:eq(1)").text(); //获得当前行第一个TD值
+		    var col3=currentRow.find("td:eq(2)").text(); //获得当前行第一个TD值
+		    
+		    id = col1;
+		    name = col2;
+		    info = col3;
+		    
+		    $("#update_name").val(name);
+		    $("#update_info").val(info);
+	  })
+	  
+	  $("#del").click(function(){
+		  	    $.post(
+		            "DeleteTime.action",
+		            {
+		            	time_id:id,
+		            },
+		            function(data) {
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Fail"){
+							alert("删除失败！");
+							window.location.replace("TimeManage.html");
+						}
+						else{
+							alert("删除成功!");
+							window.location.replace("TimeManage.html");
+						}
+		            }
+	        );
+	  })
+	  
+	  $("#update").click(function(){
+				var name = $("#update_name").val();
+				//alert(name + " " + info);
+		  	    $.post(
+		            "UpdateTime.action",
+		            {
+		            	time_id:id,
+		            	time_name:name,
+		            },
+		            function(data) {
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Fail"){
+							alert("更新失败！");
+							window.location.replace("TimeManage.html");
+						}
+						else{
+							alert("更新成功!");
+							window.location.replace("TimeManage.html");
+						}
+		            }
+	        );
+	  })
+	  	  
+	  $("#add").click(function(){
+				var name = $("#add_name").val();
+		  	    $.post(
+		            "AddTime.action",
+		            {
+		            	time_name:name,
+		            },
+		            function(data) {
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Fail"){
+							alert("添加失败！");
+							window.location.replace("TimeManage.html");
+						}
+						else{
+							alert("添加成功!");
+							window.location.replace("TimeManage.html");
+						}
+		            }
+	        );
+	  })
+	  
+})
 
 function refresh(){
 	window.location.replace("TimeManage.html");
