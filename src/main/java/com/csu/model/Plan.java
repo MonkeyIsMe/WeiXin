@@ -27,6 +27,9 @@ public class Plan {
 	@Column(name="plan_tittle")
 	private String PlanTittle;
 
+	@Column(name="company_name")
+	private String CompanyName;
+	
 	public int getPlanId() {
 		return PlanId;
 	}
@@ -58,6 +61,13 @@ public class Plan {
 	public void setPlanTittle(String planTittle) {
 		PlanTittle = planTittle;
 	}
+	public String getCompanyName() {
+		return CompanyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		CompanyName = companyName;
+	}
 	
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
@@ -65,6 +75,7 @@ public class Plan {
 		jo.put("PlanInfo", this.PlanInfo);
 		jo.put("TimeId", this.TimeId);
 		jo.put("PlanTittle", this.PlanTittle);
+		jo.put("CompanyName", this.CompanyName);
 		return jo;
 	}
 	

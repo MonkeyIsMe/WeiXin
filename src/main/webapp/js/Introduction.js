@@ -1,6 +1,8 @@
 var row = 1;  //页数
 var count; //总记录数
 
+var id;
+
 $(function(){
 	$.ajaxSettings.async = false;
 	$.post(
@@ -121,6 +123,42 @@ function NextPage(){
 
 }
 
+$(document).ready(function(){
+	
+	  $("#myTable").on('click','.delete',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    var col2=currentRow.find("td:eq(1)").text(); //获得当前行第一个TD值
+		    var col3=currentRow.find("td:eq(2)").text(); //获得当前行第一个TD值
+		    
+		    id = col1;
+		    
+	  })
+	  
+	  $("#del").click(function(){
+		  	    $.post(
+		            "DeleteIntroduction.action",
+		            {
+		            	user_id:id,
+		            },
+		            function(data) {
+						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+						if(data == "Fail"){
+							alert("删除失败！");
+							window.location.replace("UserManage.html");
+						}
+						else{
+							alert("删除成功!");
+							window.location.replace("UserManage.html");
+						}
+		            }
+	        );
+	  })
+	  
+	  	  
+	  
+})
 
 function refresh(){
 	window.location.replace("IntroductionManage.html");

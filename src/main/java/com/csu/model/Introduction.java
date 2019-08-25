@@ -26,6 +26,9 @@ public class Introduction {
 	
 	@Column(name="introduction_tittle")
 	private String IntroductionTittle;
+	
+	@Column(name="company_name")
+	private String CompanyName;
 
 	public int getIntroductionId() {
 		return IntroductionId;
@@ -59,12 +62,21 @@ public class Introduction {
 		IntroductionTittle = introductionTittle;
 	}
 	
+	public String getCompanyName() {
+		return CompanyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		CompanyName = companyName;
+	}
+
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("IntroductionId", this.IntroductionId);
 		jo.put("IntroductionInfo", this.IntroductionInfo);
 		jo.put("IntroductionTime", this.IntroductionTime);
 		jo.put("IntroductionTittle", this.IntroductionTittle);
+		jo.put("CompanyName", this.CompanyName);
 		return jo;
 	}
 	

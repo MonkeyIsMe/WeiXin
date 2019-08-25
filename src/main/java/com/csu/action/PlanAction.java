@@ -42,9 +42,11 @@ public class PlanAction extends ActionSupport{
 		String plan_info = request.getParameter("plan_info");
 		String time_id = request.getParameter("time_id");
 		String plan_tittle = request.getParameter("plan_tittle");
+		String company_name = request.getParameter("company_name");
 		
 		int tid = Integer.valueOf(time_id);
 		
+		plan.setCompanyName(company_name);
 		plan.setPlanInfo(plan_info);
 		plan.setTimeId(tid);
 		plan.setPlanTittle(plan_tittle);
@@ -89,6 +91,7 @@ public class PlanAction extends ActionSupport{
 		String plan_info = request.getParameter("plan_info");
 		String time_id = request.getParameter("time_id");
 		String plan_tittle = request.getParameter("plan_tittle");
+		String company_name = request.getParameter("company_name");
 		
 		int pid = Integer.valueOf(plan_id);
 		plan = PlanService.QueryPlan(pid);
@@ -105,6 +108,7 @@ public class PlanAction extends ActionSupport{
 		plan.setPlanInfo(plan_info);
 		plan.setTimeId(tid);
 		plan.setPlanTittle(plan_tittle);
+		plan.setCompanyName(company_name);
 		
 		PlanService.AddPlan(plan);
 		

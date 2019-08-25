@@ -44,8 +44,8 @@ import com.csu.trans.TransResult;
  *
  */
 public class WeixinUtil {
-	private static final String APPID = "wxdd76438574cc239e";
-	private static final String APPSECRET = "8fb4f41bd36156e171631d371750b519";
+	private static final String APPID = "wxea7cdd5c1ebc8cd3";
+	private static final String APPSECRET = "9592c4b3209e12ee0c8b217abe42ec86";
 	
 	private static final String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
 	
@@ -56,6 +56,8 @@ public class WeixinUtil {
 	private static final String QUERY_MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN";
 	
 	private static final String DELETE_MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN";
+	
+	private static final String User_URL = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN\r\n";
 	/**
 	 * get����
 	 * @param url

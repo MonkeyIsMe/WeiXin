@@ -39,7 +39,9 @@ public class IntroductionAction extends ActionSupport{
 		String introduction_info = request.getParameter("introduction_info");
 		String introduction_time = request.getParameter("introduction_time");
 		String introduction_tittle = request.getParameter("introduction_tittle");
+		String company_name = request.getParameter("company_name");
 		
+		introduction.setCompanyName(company_name);
 		introduction.setIntroductionInfo(introduction_info);
 		introduction.setIntroductionTime(introduction_time);
 		introduction.setIntroductionTittle(introduction_tittle);
@@ -61,6 +63,8 @@ public class IntroductionAction extends ActionSupport{
 		String introduction_info = request.getParameter("introduction_info");
 		String introduction_time = request.getParameter("introduction_time");
 		String introduction_tittle = request.getParameter("introduction_tittle");
+		String company_name = request.getParameter("company_name");
+		
 		
 		int iid = Integer.valueOf(introduction_id);
 		
@@ -73,6 +77,7 @@ public class IntroductionAction extends ActionSupport{
 			return ;
 		}
 		
+		introduction.setCompanyName(company_name);
 		introduction.setIntroductionInfo(introduction_info);
 		introduction.setIntroductionTime(introduction_time);
 		introduction.setIntroductionTittle(introduction_tittle);
