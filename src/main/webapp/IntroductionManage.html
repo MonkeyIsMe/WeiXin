@@ -24,7 +24,8 @@
     <tr align="center" class="table_header" height="22">
         <th style="width:10%;text-align:center">介绍编号</th>
         <th style="width:10%;text-align:center">介绍名称</th>
-        <th style="width:70%;text-align:center">介绍简略信息</th>
+        <th style="width:10%;text-align:center">介绍名称</th>
+        <th style="width:60%;text-align:center">介绍简略信息</th>
         <th style="width:10%;text-align:center">查看-删除</th>
     </tr>
     
@@ -39,4 +40,19 @@
     <div id="TotalPage" style="float:left;margin-top:10px;font-size:18px;margin-left:5px"></div>
     <div id="NowPage" style="float:left;margin-top:10px;font-size:18px;margin-left:5px"></div>
 </body>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">删除界面</h4>
+            </div>
+            <div class="modal-body">是否删除该介绍</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="del">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 </html>

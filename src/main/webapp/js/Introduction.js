@@ -39,10 +39,11 @@ $(function(){
                     var WorkFlag;
 			        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].introductionId +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].introductionTittle +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].companyName +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].introductionInfo +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 			        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px"></span></a>'
-			        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px"></span></a>'
+			        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 			        		+"</td>");
                     // $("#J_TbData").append($trTemp);
                     $trTemp.appendTo("#KnowList");
@@ -72,12 +73,13 @@ function PrevPage(){
 	                    var $trTemp = $("<tr ></tr>");
 	                    //往行里面追加 td单元格
 	                    var WorkFlag;
-				        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].companyId +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].introductionId +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].introductionTittle +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].companyName +"</td>");
-				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].companyInfo +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].introductionInfo +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 				        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px"></span></a>'
-				        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px"></span></a>'
+				        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 				        		+"</td>");
 	                    // $("#J_TbData").append($trTemp);
 	                    $trTemp.appendTo("#KnowList");
@@ -107,12 +109,13 @@ function NextPage(){
 	                    var $trTemp = $("<tr ></tr>");
 	                    //往行里面追加 td单元格
 	                    var WorkFlag;
-				        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].companyId +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">"+ data[i].introductionId +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].introductionTittle +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].companyName +"</td>");
-				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].companyInfo +"</td>");
+				        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].introductionInfo +"</td>");
 				        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 				        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px"></span></a>'
-				        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px"></span></a>'
+				        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'
 				        		+"</td>");
 	                    // $("#J_TbData").append($trTemp);
 	                    $trTemp.appendTo("#KnowList");
@@ -140,17 +143,17 @@ $(document).ready(function(){
 		  	    $.post(
 		            "DeleteIntroduction.action",
 		            {
-		            	user_id:id,
+		            	introduction_id:id,
 		            },
 		            function(data) {
 						data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 						if(data == "Fail"){
 							alert("删除失败！");
-							window.location.replace("UserManage.html");
+							window.location.replace("IntroductionManage.html");
 						}
 						else{
 							alert("删除成功!");
-							window.location.replace("UserManage.html");
+							window.location.replace("IntroductionManage.html");
 						}
 		            }
 	        );
