@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <link href="css/Common.css" type="text/css" rel="styleSheet">
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/modules/layer/default/layer.css">
+    <link href="css/bootstrap-theme.css" type="text/css" rel="styleSheet">
+    <link href="css/bootstrap.css" type="text/css" rel="styleSheet">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Introduction.js"></script>
+    <script src="js/ckeditor/ckeditor.js"></script>
+    <link href="js/layui/css/layui.css" type="text/css" rel="styleSheet">
+    <script src="js/layui/layui.js"></script>
+<body>
+
+<textarea id="content" name="content" class="ckeditor" style="resize:none"></textarea>
+<div class="form-group"  style="width:600px;margin:20px 0 10px 50px">
+	<label>发表单位：</label>
+	    <select class="form-control" id="select_company">
+	    </select>
+</div>
+<div class="form-group"  style="width:600px;margin:20px 0 10px 50px">
+	<label>计划名称</label>
+	<div class="input-group">
+            <input type="text" class="form-control" style="width:600px" id="tittle" >
+        </div>
+</div>
+<button onclick="savaData()" type="button" class="btn btn-info" style="margin-left:45%;margin-top:20px;width:200px">添加</button>
+
+</body>
+</html>
