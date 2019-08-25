@@ -22,7 +22,7 @@ public class Plan {
 	private String PlanInfo;
 	
 	@Column(name="time_id")
-	private int TimeId;
+	private String TimeId;
 	
 	@Column(name="plan_tittle")
 	private String PlanTittle;
@@ -45,12 +45,13 @@ public class Plan {
 	public void setPlanInfo(String planInfo) {
 		PlanInfo = planInfo;
 	}
+	
 
-	public int getTimeId() {
+	public String getTimeId() {
 		return TimeId;
 	}
 
-	public void setTimeId(int timeId) {
+	public void setTimeId(String timeId) {
 		TimeId = timeId;
 	}
 

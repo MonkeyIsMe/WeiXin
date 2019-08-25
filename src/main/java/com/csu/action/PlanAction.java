@@ -44,11 +44,10 @@ public class PlanAction extends ActionSupport{
 		String plan_tittle = request.getParameter("plan_tittle");
 		String company_name = request.getParameter("company_name");
 		
-		int tid = Integer.valueOf(time_id);
 		
 		plan.setCompanyName(company_name);
 		plan.setPlanInfo(plan_info);
-		plan.setTimeId(tid);
+		plan.setTimeId(time_id);
 		plan.setPlanTittle(plan_tittle);
 		
 		PlanService.AddPlan(plan);
@@ -68,10 +67,8 @@ public class PlanAction extends ActionSupport{
 		String time_id = request.getParameter("time_id");
 		String plan_tittle = request.getParameter("plan_tittle");
 		
-		int tid = Integer.valueOf(time_id);
-		
 		plan.setPlanInfo(plan_info);
-		plan.setTimeId(tid);
+		plan.setTimeId(time_id);
 		plan.setPlanTittle(plan_tittle);
 		
 		PlanService.AddPlan(plan);
@@ -96,7 +93,6 @@ public class PlanAction extends ActionSupport{
 		int pid = Integer.valueOf(plan_id);
 		plan = PlanService.QueryPlan(pid);
 		
-		int tid = Integer.valueOf(time_id);
 		
 		if(plan == null) {
 			out.println("Fail");
@@ -106,7 +102,7 @@ public class PlanAction extends ActionSupport{
 		}
 		
 		plan.setPlanInfo(plan_info);
-		plan.setTimeId(tid);
+		plan.setTimeId(time_id);
 		plan.setPlanTittle(plan_tittle);
 		plan.setCompanyName(company_name);
 		

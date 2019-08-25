@@ -3,6 +3,12 @@ var count; //总记录数
 
 var id;
 
+var editor = null;
+window.onload = function () {
+    editor = CKEDITOR.replace("content"); //参数‘content’是textarea元素的name属性值，而非id属性值
+}
+
+
 $(function(){
 	$.ajaxSettings.async = false;
 	$.post(
@@ -19,6 +25,32 @@ $(function(){
 				$("#NowPage").append("，当前第" + row + "页");
 			}
 			);
+    
+    $.post(
+            "QueryAllCompany.action",
+            {
+            	
+            },
+            function(data) {
+            	var data = JSON.parse(data);
+            	for(var i = 0; i < data.length; i ++){
+            		$("#select_company").append("<option value="+data[i].companyName +">"+data[i].companyName+"</option>");
+            	}
+            }
+    );
+    
+    $.post(
+            "QueryAllTime.action",
+            {
+            	
+            },
+            function(data) {
+            	var data = JSON.parse(data);
+            	for(var i = 0; i < data.length; i ++){
+            		$("#select_time").append("<option value="+data[i].timeName +">"+data[i].timeName+"</option>");
+            	}
+            }
+    );
 	
 });
 
@@ -165,6 +197,36 @@ $(document).ready(function(){
 	  	  
 	  
 })
+
+function savaData(){
+
+    var content = CKEDITOR.instances.content.getData(); //获取值
+	var select_company = $("#select_company option:selected").val();
+	var select_time = $("#select_time option:selected").val();
+    var tittle = $("#tittle").val();
+    
+	  	    $.post(
+	            "AddPlan.action",
+	            {
+	            	plan_info:content,
+	            	time_id:select_time,
+	            	plan_tittle:tittle,
+	            	company_name:select_company,
+	            },
+	            function(data) {
+					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+					if(data == "Fail"){
+						alert("添加计划失败！");
+						window.location.replace("PlanManage.html");
+					}
+					else{
+						alert("添加计划成功!");
+						window.location.replace("PlanManage.html");
+					}
+	            }
+      );
+    
+}
 
 function refresh(){
 	window.location.replace("PlanManage.html");
