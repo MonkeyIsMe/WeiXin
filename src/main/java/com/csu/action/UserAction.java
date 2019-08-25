@@ -81,7 +81,6 @@ public class UserAction extends ActionSupport{
 		
 		String user_number = request.getParameter("user_number");
 		String user_phone = request.getParameter("user_phone");
-		String user_appid = request.getParameter("user_appid");
 		String user_role = request.getParameter("user_role");
 		String user_company = request.getParameter("user_company");
 		String user_name = request.getParameter("user_name");
@@ -98,7 +97,6 @@ public class UserAction extends ActionSupport{
 			return ;
 		}
 				
-		user.setUserAppid(user_appid);
 		user.setUserNumber(user_number);
 		user.setUserPhone(user_phone);
 		user.setUserRole(user_role);
