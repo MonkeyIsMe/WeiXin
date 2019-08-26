@@ -157,6 +157,19 @@ $(document).ready(function(){
 		    
 	  })
 	  
+	  	  	  $("#myTable").on('click','.check',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    var col2=currentRow.find("td:eq(1)").text(); //获得当前行第一个TD值
+		    var col3=currentRow.find("td:eq(2)").text(); //获得当前行第一个TD值
+		    
+		    id = col1;
+		    
+		    var url = "UpdateIntroduction.html?IntroductionId=" + id;
+		    window.location.replace(url);
+	  })
+	  
 	  $("#del").click(function(){
 		  	    $.post(
 		            "DeleteIntroduction.action",
@@ -186,7 +199,7 @@ function savaData(){
     var content = CKEDITOR.instances.content.getData(); //获取值
 	var select_company = $("#select_company option:selected").val();
     var tittle = $("#tittle").val();
-    
+    //alert(select_company);
 	  	    $.post(
 	            "AddIntroduction.action",
 	            {

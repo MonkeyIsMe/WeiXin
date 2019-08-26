@@ -174,6 +174,19 @@ $(document).ready(function(){
 		    
 	  })
 	  
+	  	  $("#myTable").on('click','.check',function(){
+		    //获得当前行
+		    var currentRow=$(this).closest("tr"); 
+		    var col1=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+		    var col2=currentRow.find("td:eq(1)").text(); //获得当前行第一个TD值
+		    var col3=currentRow.find("td:eq(2)").text(); //获得当前行第一个TD值
+		    
+		    id = col1;
+		    
+		    var url = "UpdatePlan.html?PlanId=" + id;
+		    window.location.replace(url);
+	  })
+	  
 	  $("#del").click(function(){
 		  	    $.post(
 		            "DeletePlan.action",

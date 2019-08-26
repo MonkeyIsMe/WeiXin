@@ -14,11 +14,11 @@ import org.json.JSONObject;
 public class Introduction {
 	
 	@Id
-	@Column(name="introduction_info")
+	@Column(name="introduction_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int IntroductionId;
 	
-	@Column(name="introduction_id")
+	@Column(name="introduction_info")
 	private String IntroductionInfo;
 	
 	@Column(name="introducetion_time")
@@ -62,6 +62,7 @@ public class Introduction {
 		IntroductionTittle = introductionTittle;
 	}
 	
+
 	public String getCompanyName() {
 		return CompanyName;
 	}
