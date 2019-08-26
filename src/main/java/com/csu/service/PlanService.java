@@ -20,4 +20,5 @@ public interface PlanService {
 	
 	public int CountPlan();
 	
+	public List<Plan> GetByTimeAndCompanyPlan(String time_name,String company_name);
 }

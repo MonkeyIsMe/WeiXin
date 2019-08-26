@@ -208,4 +208,25 @@ public class IntroductionAction extends ActionSupport{
 		
 	}
 	
+	public void QueryIntroductionByCompany() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String company_name = request.getParameter("company_name");
+		
+		List<Introduction> IntroductionList = IntroductionService.GetIntroductionByCompany(company_name);
+		
+		JSONArray ja = JSONArray.fromObject(IntroductionList);
+		
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+		
+	}
+	
 }

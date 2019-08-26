@@ -232,4 +232,32 @@ public class UserAction extends ActionSupport{
         out.flush(); 
         out.close();
 	}
+	
+	
+	public void UserIsExist() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String user_number = request.getParameter("user_number");
+		
+		
+		user = UserService.QueryUserByNumber(user_number);
+		
+		if(user == null) {
+			out.println("Fail");
+			out.flush(); 
+			out.close();
+			return ;
+		}
+		else {
+			out.println("Success");
+	        out.flush(); 
+	        out.close();
+		}
+	}
 }

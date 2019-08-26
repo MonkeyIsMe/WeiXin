@@ -20,4 +20,6 @@ public interface IntroductionService {
 	
 	public int CountIntroduction();
 	
+	public List<Introduction> GetIntroductionByCompany(String company_name);
+	
 }

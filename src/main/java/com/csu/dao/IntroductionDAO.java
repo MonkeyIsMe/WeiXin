@@ -16,6 +16,8 @@ public interface IntroductionDAO {
 	
 	public List<Introduction> GetAllIntroduction();
 	
+	public List<Introduction> GetIntroductionByCompany(String company_name);
+	
 	public List<Introduction> GetAllIntroductionByPageSize(int row,int PageSize);
 	
 	public int CountIntroduction();

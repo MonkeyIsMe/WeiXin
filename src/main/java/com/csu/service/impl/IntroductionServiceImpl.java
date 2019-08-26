@@ -55,6 +55,11 @@ public class IntroductionServiceImpl implements IntroductionService{
 		// TODO Auto-generated method stub
 		return Id.CountIntroduction();
 	}
+
+	public List<Introduction> GetIntroductionByCompany(String company_name) {
+		// TODO Auto-generated method stub
+		return Id.GetIntroductionByCompany(company_name);
+	}
 	
 	
 	

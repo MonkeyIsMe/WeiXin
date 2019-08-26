@@ -16,6 +16,8 @@ public interface PlanDAO {
 	
 	public List<Plan> GetAllPlan();
 	
+	public List<Plan> GetByTimeAndCompanyPlan(String time_name,String company_name);
+	
 	public List<Plan> GetAllPlanByPageSize(int row,int PageSize);
 	
 	public int CountPlan();

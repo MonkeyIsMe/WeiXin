@@ -56,6 +56,11 @@ public class PlanServiceImpl implements PlanService{
 		// TODO Auto-generated method stub
 		return pd.CountPlan();
 	}
+
+	public List<Plan> GetByTimeAndCompanyPlan(String time_name, String company_name) {
+		// TODO Auto-generated method stub
+		return pd.GetByTimeAndCompanyPlan(time_name, company_name);
+	}
 	
 	
 	

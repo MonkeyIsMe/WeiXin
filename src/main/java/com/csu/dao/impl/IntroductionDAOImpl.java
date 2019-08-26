@@ -73,4 +73,20 @@ public class IntroductionDAOImpl extends HibernateDaoSupport implements Introduc
 		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
 	}
 
+	public List<Introduction> GetIntroductionByCompany(final String company_name) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Introduction>>() {
+
+			public List<Introduction> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Introduction where company_name = ?";
+				Query query = session.createQuery(hql);
+				List<Introduction> result = null;
+				result = query.list();
+				query.setParameter(0, company_name);
+				return result;
+			}
+		});
+	}
+
 }

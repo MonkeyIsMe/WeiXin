@@ -73,4 +73,21 @@ public class PlanDAOImpl extends HibernateDaoSupport implements PlanDAO{
 		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
 	}
 
+	public List<Plan> GetByTimeAndCompanyPlan(final String time_name, final String company_name) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<Plan>>() {
+
+			public List<Plan> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from Plan where time_name = ? and company_name = ?";
+				Query query = session.createQuery(hql);
+				List<Plan> result = null;
+				result = query.list();
+				query.setParameter(0, time_name);
+				query.setParameter(1, company_name);
+				return result;
+			}
+		});
+	}
+
 }

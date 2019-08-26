@@ -203,4 +203,30 @@ public class PlanAction extends ActionSupport{
         out.close();
 		
 	}
+	
+	public void GetByTimeAndCompany() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String company_name = request.getParameter("company_name");
+		String time_name = request.getParameter("time_name");
+		
+		JSONObject jo = new JSONObject();
+		
+		List<Plan> PlanList  = PlanService.GetByTimeAndCompanyPlan(company_name, time_name);
+		
+		JSONArray ja = JSONArray.fromObject(PlanList);
+		
+		out.println(ja.toString());
+        out.flush(); 
+        out.close();
+		
+	}
+	
+	
 }
