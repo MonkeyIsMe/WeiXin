@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.csu.model.User;
 import com.csu.service.UserService;
+import com.csu.servlet.OpeinIdServlet;
 import com.opensymphony.xwork2.ActionSupport;
 
 import net.sf.json.JSONArray;
@@ -37,17 +38,21 @@ public class UserAction extends ActionSupport{
 		
 		String user_number = request.getParameter("user_number");
 		String user_phone = request.getParameter("user_phone");
-		String user_appid = request.getParameter("user_appid");
+		String code = request.getParameter("code");
 		String user_role = request.getParameter("user_role");
 		String user_company = request.getParameter("user_company");
 		String user_name = request.getParameter("user_name");
+		String user_password = request.getParameter("user_password");
 		
-		user.setUserAppid(user_appid);
+		String openid = OpeinIdServlet.getOpenId(code);
+		
+		user.setUserAppid(openid);
 		user.setUserNumber(user_number);
 		user.setUserPhone(user_phone);
 		user.setUserRole(user_role);
 		user.setUserCompany(user_company);
 		user.setUserName(user_name);
+		user.setUserPassword(user_password);
 		
 		UserService.AddUser(user);
 	}
@@ -233,6 +238,38 @@ public class UserAction extends ActionSupport{
         out.close();
 	}
 	
+	public void Login() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String user_number = request.getParameter("user_number");
+		String user_password = request.getParameter("user_password");
+		
+		user = UserService.QueryUserByNumber(user_number);
+		
+		
+		if(user == null) {
+			out.println("Fail");
+			out.flush(); 
+			out.close();
+			return ;
+		}
+		else if(user.getUserPassword().endsWith(user_password)) {
+			out.println("Success");
+	        out.flush(); 
+	        out.close();
+		}
+		else {
+			out.println("Wrong");
+	        out.flush(); 
+	        out.close();
+		}
+	}
 	
 	public void UserIsExist() throws Exception{
 		

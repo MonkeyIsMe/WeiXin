@@ -35,6 +35,9 @@ public class User {
 	
 	@Column(name="user_name")
 	private String UserName;
+	
+	@Column(name="user_password")
+	private String UserPassword;
 
 	public int getUserId() {
 		return UserId;
@@ -91,7 +94,14 @@ public class User {
 	public void setUserName(String userName) {
 		UserName = userName;
 	}
-	
+	public String getUserPassword() {
+		return UserPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		UserPassword = userPassword;
+	}
+
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("UserId", this.UserId);
@@ -101,6 +111,8 @@ public class User {
 		jo.put("UserRole", this.UserRole);
 		jo.put("UserCompany", this.UserCompany);
 		jo.put("UserName", this.UserName);
+		jo.put("UserPassword", this.UserPassword);
+		
 		return jo;
 	}
 	

@@ -73,6 +73,8 @@
 			</action>
 			<action name="UserIsExist" class="UserAction" method="UserIsExist" >
 			</action>
+			<action name="Login" class="UserAction" method="Login" >
+			</action>
 			
 			<action name="AddCompany" class="CompanyAction" method="AddCompany" >
 			</action>
