@@ -35,6 +35,8 @@
 			</action>
 			<action name="CountIntroduction" class="IntroductionAction" method="CountIntroduction" >
 			</action>
+			<action name="QueryIntroductionByCompany" class="IntroductionAction" method="QueryIntroductionByCompany" >
+			</action>
 			
 			<action name="AddPlan" class="PlanAction" method="AddPlan" >
 			</action>
@@ -49,6 +51,8 @@
 			<action name="QueryAllPlanByPageSize" class="PlanAction" method="QueryAllPlanByPageSize" >
 			</action>
 			<action name="CountPlan" class="PlanAction" method="CountPlan" >
+			</action>
+			<action name="GetByTimeAndCompany" class="PlanAction" method="GetByTimeAndCompany" >
 			</action>
 			
 			<action name="AddUser" class="UserAction" method="AddUser" >
@@ -66,6 +70,8 @@
 			<action name="CountUser" class="UserAction" method="CountUser" >
 			</action>
 			<action name="QueryAllUserByPageSize" class="UserAction" method="QueryAllUserByPageSize" >
+			</action>
+			<action name="UserIsExist" class="UserAction" method="UserIsExist" >
 			</action>
 			
 			<action name="AddCompany" class="CompanyAction" method="AddCompany" >

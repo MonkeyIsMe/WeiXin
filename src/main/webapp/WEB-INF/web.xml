@@ -12,7 +12,17 @@
   	<param-value>classpath:applicationContext.xml</param-value>  
   </context-param>
   
-    <servlet>
+   <servlet>
+    <servlet-name>OpeinIdServlet</servlet-name>
+    <servlet-class>com.csu.servlet.OpeinIdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OpeinIdServlet</servlet-name>
+    <url-pattern>/op.do</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
     <servlet-name>weixinServlet</servlet-name>
     <servlet-class>com.csu.servlet.WeixinServlet</servlet-class>
   </servlet>
@@ -20,7 +30,6 @@
     <servlet-name>weixinServlet</servlet-name>
     <url-pattern>/wx.do</url-pattern>
   </servlet-mapping>
-  
     <!-- 扩大session作用范围
   	注意: 任何filter一定要在struts的filter之前调用
    -->
