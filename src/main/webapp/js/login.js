@@ -15,31 +15,40 @@ function login(){
 	
 	var account = $("#account").val();
 	var password = $("#pwd").val();
-	
-	$.post(
-			"Login.action",
-			{
-				user_number:account,
-				user_password:password
-			},
-			function(data){
-				data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-				if(data == "Fail"){
-					alert("用户不存在！");
+	if(account == "" || account == null || password == null || password == ""){
+		alert("输入为空");
+	}
+	else{
+		$.post(
+				"Login.action",
+				{
+					user_number:account,
+					user_password:password
+				},
+				function(data){
+					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+					if(data == "Fail"){
+						alert("用户不存在！");
+					}
+					else if(data == "Wrong"){
+						alert("密码错误！");
+					}
+					else if(data == "Success"){
+						window.close();
+					}
 				}
-				else if(data == "Wrong"){
-					alert("密码错误！");
-				}
-				else if(data == "Success"){
-					window.close();
-				}
-			}
-			);
+				);
+	}
+
 }
 
 
 
-function ToRegister(){
-    var url = "Register.html?code=" + code;
+
+$(function(){
+	$("#register").click(function(){
+	    var url = "Register.html?code=" + code;
     window.location.replace(url);
-}
+})
+	
+});

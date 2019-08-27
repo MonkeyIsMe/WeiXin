@@ -53,35 +53,10 @@ public class WeixinServlet extends HttpServlet {
 			String content = map.get("Content");
 			
 			String message = null;
-			if(MessageUtil.MESSAGE_TEXT.equals(msgType)){
-				if("1".equals(content)){
-					message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.firstMenu());
-				}else if("2".equals(content)){
-					message = MessageUtil.initNewsMessage(toUserName, fromUserName);
-				}else if("3".equals(content)){
-					message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.threeMenu());
-				}else if("?".equals(content) || "��".equals(content)){
-					message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.menuText());
-				}else if(content.startsWith("����")){
-					String word = content.replaceAll("^����", "").trim();
-					if("".equals(word)){
-						message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.threeMenu());
-					}else{
-						message = MessageUtil.initText(toUserName, fromUserName, WeixinUtil.translate(word));
-					}
-				}
-			}else if(MessageUtil.MESSAGE_EVNET.equals(msgType)){
+			if(MessageUtil.MESSAGE_EVNET.equals(msgType)){
 				String eventType = map.get("Event");
-				if(MessageUtil.MESSAGE_SUBSCRIBE.equals(eventType)){
+				if(MessageUtil.MESSAGE_CLICK.equals(eventType)){
 					message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.menuText());
-				}else if(MessageUtil.MESSAGE_CLICK.equals(eventType)){
-					message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.menuText());
-				}else if(MessageUtil.MESSAGE_VIEW.equals(eventType)){
-					String url = map.get("EventKey");
-					message = MessageUtil.initText(toUserName, fromUserName, url);
-				}else if(MessageUtil.MESSAGE_SCANCODE.equals(eventType)){
-					String key = map.get("EventKey");
-					message = MessageUtil.initText(toUserName, fromUserName, key);
 				}
 			}else if(MessageUtil.MESSAGE_LOCATION.equals(msgType)){
 				String label = map.get("Label");

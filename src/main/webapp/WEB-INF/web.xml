@@ -30,6 +30,16 @@
     <servlet-name>weixinServlet</servlet-name>
     <url-pattern>/wx.do</url-pattern>
   </servlet-mapping>
+  
+  
+     <servlet>
+    <servlet-name>LocationServlet</servlet-name>
+    <servlet-class>com.csu.servlet.LocationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LocationServlet</servlet-name>
+    <url-pattern>/lo.do</url-pattern>
+  </servlet-mapping>
     <!-- 扩大session作用范围
   	注意: 任何filter一定要在struts的filter之前调用
    -->
