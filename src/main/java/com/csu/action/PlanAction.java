@@ -4,11 +4,13 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.csu.model.Plan;
 import com.csu.service.PlanService;
+import com.mysql.jdbc.Blob;
 import com.opensymphony.xwork2.ActionSupport;
 
 import net.sf.json.JSONArray;
@@ -44,7 +46,7 @@ public class PlanAction extends ActionSupport{
 		String plan_tittle = request.getParameter("plan_tittle");
 		String company_name = request.getParameter("company_name");
 		
-		
+				
 		plan.setCompanyName(company_name);
 		plan.setPlanInfo(plan_info);
 		plan.setTimeId(time_id);
@@ -63,16 +65,9 @@ public class PlanAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String plan_info = request.getParameter("plan_info");
-		String time_id = request.getParameter("time_id");
-		String plan_tittle = request.getParameter("plan_tittle");
-		
-		plan.setPlanInfo(plan_info);
-		plan.setTimeId(time_id);
-		plan.setPlanTittle(plan_tittle);
-		
-		PlanService.AddPlan(plan);
-		
+		String plan_id = request.getParameter("plan_id");
+
+		PlanService.DeletePlan(plan);
 	}
 	
 	public void UpdatePlan() throws Exception{
@@ -106,7 +101,7 @@ public class PlanAction extends ActionSupport{
 		plan.setPlanTittle(plan_tittle);
 		plan.setCompanyName(company_name);
 		
-		PlanService.AddPlan(plan);
+		PlanService.UpdatePlan(plan);
 		
 	}
 	

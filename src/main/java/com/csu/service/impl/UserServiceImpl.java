@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService{
 		
 		User user = null;
 		List<User> UserList = ud.QueryUserByNumber(UserNumber);
+		if(UserList.size() == 0 ) return user;
 		user = UserList.get(0);
 		return user;
 	}

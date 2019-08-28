@@ -58,9 +58,9 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
 				// TODO Auto-generated method stub
 				String hql = "from User where user_number = ?";
 				Query query = session.createQuery(hql);
+				query.setParameter(0,UserNumber);
 				List<User> result = null;
 				result = query.list();
-				query.setParameter(0, UserNumber);
 				return result;
 			}
 		});

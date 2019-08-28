@@ -20,6 +20,7 @@ function Register(){
 	var select_company = $("#select_company option:selected").val();
 	var select_role = $("#select_role option:selected").val();
 	
+	
 	var flag = 0;
 	
 	$.post(
@@ -30,31 +31,31 @@ function Register(){
 			function(data){
 				data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 				if(data == "Fail"){
-					flag = 1;
+						
+						$.post(
+								"AddUser.action",
+								{
+									user_number:account,
+									user_phone:phone,
+									code:code,
+									user_role:select_role,
+									user_company:select_company,
+									user_name:name,
+									user_password:password,
+								},
+								function(data){
+									data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+									alert("注册成功！");
+									window.location.replace("Login.html");
+								}
+						);
 				}
 				else{
 					alert("用户已经存在");
 				}
 			}
-	);
+			);
 	
-	if(flag == 1){
-		
-		$.post(
-				"UserIsExist.action",
-				{
-					user_number:account,
-					user_phone:phone,
-					code:code,
-					user_role:select_role,
-					user_company:select_company,
-					user_name:name,
-					user_password:pwd,
-				},
-				function(data){
-					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-					alert("注册成功！");
-				}
-		);
-	}
+
+
 }

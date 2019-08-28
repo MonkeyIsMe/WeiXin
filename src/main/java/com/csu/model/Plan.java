@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import org.json.JSONObject;
 
+import com.mysql.jdbc.Blob;
+
 @Entity
 @Table(name="tab_plan")
 public class Plan {
@@ -45,7 +47,6 @@ public class Plan {
 	public void setPlanInfo(String planInfo) {
 		PlanInfo = planInfo;
 	}
-	
 
 	public String getTimeId() {
 		return TimeId;
