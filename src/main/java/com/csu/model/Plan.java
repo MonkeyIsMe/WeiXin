@@ -32,6 +32,8 @@ public class Plan {
 	@Column(name="company_name")
 	private String CompanyName;
 	
+	
+	
 	public int getPlanId() {
 		return PlanId;
 	}
@@ -63,6 +65,7 @@ public class Plan {
 	public void setPlanTittle(String planTittle) {
 		PlanTittle = planTittle;
 	}
+
 	public String getCompanyName() {
 		return CompanyName;
 	}
@@ -70,7 +73,7 @@ public class Plan {
 	public void setCompanyName(String companyName) {
 		CompanyName = companyName;
 	}
-	
+
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("PlanId", this.PlanId);

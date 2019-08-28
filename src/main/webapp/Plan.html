@@ -11,7 +11,8 @@
     <script src="js/jquery.params.js"></script>
 </head>
 <body>
-
+<div id="content" style="margin-left:200px">
+</div>
 </body>
 <script type="text/javascript">
 	
@@ -28,7 +29,18 @@ function getQueryVariable(variable){
 var company = $.query.get("company");
 var time = $.query.get("time");
 
-//console.log(company + " " + time);
+$.post(
+		"GetByTimeAndCompany.action",
+		{
+			time_id:time,
+			company_id:company,
+		},
+		function(data){
+			var data = JSON.parse(data);
+			console.log(data);
+			$("#content").append(data[0].planInfo);
+		}
+		);
 
 </script>
 </html>

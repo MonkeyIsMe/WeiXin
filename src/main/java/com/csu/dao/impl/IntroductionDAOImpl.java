@@ -82,8 +82,8 @@ public class IntroductionDAOImpl extends HibernateDaoSupport implements Introduc
 				String hql = "from Introduction where company_name = ?";
 				Query query = session.createQuery(hql);
 				List<Introduction> result = null;
-				result = query.list();
 				query.setParameter(0, company_name);
+				result = query.list();
 				return result;
 			}
 		});

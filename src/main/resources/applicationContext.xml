@@ -35,12 +35,11 @@
 		</tx:attributes>
 	</tx:advice>
 	
-	<bean name="IntroductionAction" class="com.csu.action.IntroductionAction" scope="prototype" >
-		<property name="IntroductionService" ref="IntroductionService" ></property>
-	</bean>
 	
 	<bean name="PlanAction" class="com.csu.action.PlanAction" scope="prototype" >
 		<property name="PlanService" ref="PlanService" ></property>
+		<property name="TimeService" ref="TimeService" ></property>
+		<property name="CompanyService" ref="CompanyService" ></property>
 	</bean>
 	
 	<bean name="UserAction" class="com.csu.action.UserAction" scope="prototype" >
@@ -57,6 +56,11 @@
 	
 	<bean name="TimeAction" class="com.csu.action.TimeAction" scope="prototype" >
 		<property name="TimeService" ref="TimeService" ></property>
+	</bean>
+	
+	<bean name="IntroductionAction" class="com.csu.action.IntroductionAction" scope="prototype" >
+		<property name="IntroductionService" ref="IntroductionService" ></property>
+		<property name="CompanyService" ref="CompanyService" ></property>
 	</bean>
 	
 	

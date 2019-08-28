@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.csu.model.Company;
 import com.csu.model.Introduction;
+import com.csu.service.CompanyService;
 import com.csu.service.IntroductionService;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -17,8 +19,9 @@ import net.sf.json.JSONObject;
 public class IntroductionAction extends ActionSupport{
 
 	private IntroductionService IntroductionService;
-	private Introduction introduction;
-	
+	private CompanyService CompanyService;
+	private Introduction introduction = new Introduction();
+	private Company company = new Company();
 	
 	public IntroductionService getIntroductionService() {
 		return IntroductionService;
@@ -26,7 +29,13 @@ public class IntroductionAction extends ActionSupport{
 	public void setIntroductionService(IntroductionService introductionService) {
 		IntroductionService = introductionService;
 	}
-	
+
+	public CompanyService getCompanyService() {
+		return CompanyService;
+	}
+	public void setCompanyService(CompanyService companyService) {
+		CompanyService = companyService;
+	}
 	public void AddIntroduction() throws Exception{
 		
 		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
@@ -217,7 +226,11 @@ public class IntroductionAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String company_name = request.getParameter("company_name");
+		String company_id = request.getParameter("company_id");
+		//System.out.println(company_id);
+		int cid = Integer.valueOf(company_id);
+		company = CompanyService.QueryCompany(cid);
+		String company_name = company.getCompanyInfo();
 		
 		List<Introduction> IntroductionList = IntroductionService.GetIntroductionByCompany(company_name);
 		

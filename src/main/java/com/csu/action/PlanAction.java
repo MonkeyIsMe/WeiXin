@@ -8,8 +8,12 @@ import javax.sql.rowset.serial.SerialBlob;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.csu.model.Company;
 import com.csu.model.Plan;
+import com.csu.model.Time;
+import com.csu.service.CompanyService;
 import com.csu.service.PlanService;
+import com.csu.service.TimeService;
 import com.mysql.jdbc.Blob;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -19,7 +23,11 @@ import net.sf.json.JSONObject;
 public class PlanAction extends ActionSupport{
 	
 	private PlanService PlanService;
+	private TimeService TimeService;
+	private CompanyService CompanyService;
 	private Plan plan = new Plan();
+	private Company company = new Company();
+	private Time time = new Time();
 	
 	
 	public PlanService getPlanService() {
@@ -29,8 +37,21 @@ public class PlanAction extends ActionSupport{
 	public void setPlanService(PlanService planService) {
 		PlanService = planService;
 	}
+	public TimeService getTimeService() {
+		return TimeService;
+	}
 
+	public void setTimeService(TimeService timeService) {
+		TimeService = timeService;
+	}
 
+	public CompanyService getCompanyService() {
+		return CompanyService;
+	}
+
+	public void setCompanyService(CompanyService companyService) {
+		CompanyService = companyService;
+	}
 
 	public void AddPlan() throws Exception{
 		
@@ -208,13 +229,21 @@ public class PlanAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String company_name = request.getParameter("company_name");
-		String time_name = request.getParameter("time_name");
+		String company_id = request.getParameter("company_id");
+		String time_id = request.getParameter("time_id");
+		
+		int cid = Integer.valueOf(company_id);
+		company = CompanyService.QueryCompany(cid);
+		String company_name = company.getCompanyName();
+		
+		int tid = Integer.valueOf(time_id);
+		time = TimeService.QueryTime(tid);
+		String time_name = time.getTimeName();
 		
 		JSONObject jo = new JSONObject();
-		
-		List<Plan> PlanList  = PlanService.GetByTimeAndCompanyPlan(company_name, time_name);
-		
+		//System.out.println(time_name + " " + company_name);
+		List<Plan> PlanList  = PlanService.GetByTimeAndCompanyPlan(time_name, company_name);
+		//System.out.println(PlanList.size());
 		JSONArray ja = JSONArray.fromObject(PlanList);
 		
 		out.println(ja.toString());
