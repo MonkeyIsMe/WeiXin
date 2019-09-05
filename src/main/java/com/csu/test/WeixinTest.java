@@ -1,5 +1,6 @@
 package com.csu.test;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -24,6 +25,7 @@ import com.csu.service.CompanyService;
 import com.csu.service.PlanService;
 import com.csu.service.UserService;
 import com.csu.util.HibernateUtil;
+import com.csu.util.SmsUtil;
 import com.csu.util.WeixinUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -45,12 +47,16 @@ public class WeixinTest {
 	@Resource(name="sessionFactory")
 	private  SessionFactory sf;
 	
+	@Test
+	public void sendcode() throws UnsupportedEncodingException {
+		SmsUtil su = new SmsUtil();
+		String msg = su.sendSms("13617305586", 123123, 1);
+		System.out.println(msg);
+	}
 	
 	@Test
 	public void Query() {
-		List<Plan> PlanList = pd.GetByTimeAndCompanyPlan("2019", "湖南合天智汇信息技术有限公司基地");
-		for(Plan plan :PlanList) {
-			System.out.println(plan.toString());
-		}
+		User user = us.QueryUserByPhone("13617305586");
+		System.out.println(user.toString());
 	}
 }

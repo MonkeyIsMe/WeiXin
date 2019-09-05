@@ -4,12 +4,14 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.csu.model.User;
 import com.csu.service.UserService;
 import com.csu.servlet.OpeinIdServlet;
+import com.csu.util.SmsUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
 import net.sf.json.JSONArray;
@@ -89,19 +91,33 @@ public class UserAction extends ActionSupport{
 		String ali_code = request.getParameter("ali_code");
 		
 		user = UserService.QueryUserByPhone(user_phone);
-		
+		HttpSession session  = request.getSession();
+		String checkcode = (String)session.getAttribute("code");
 		if(user == null) {
 			out.println("Fail");
 			out.flush(); 
 			out.close();
 			return ;
 		}
+		else if(ali_code.endsWith(checkcode)) {
+			user.setUserPhone(user_phone);
+			user.setUserAppid(code);
+			user.setUserFlag("1");
+			
+			UserService.UpdateUser(user);
+			out.println("Success");
+			out.flush(); 
+			out.close();
+			return ;
+		}
+		else {
+			out.println("WrongCode");
+			out.flush(); 
+			out.close();
+			return ;
+		}
 				
-		user.setUserPhone(user_phone);
-		user.setUserAppid(code);
-		user.setUserFlag("1");
-		
-		UserService.UpdateUser(user);
+
 	}
 	
 	public void DeleteUser() throws Exception{
@@ -244,6 +260,8 @@ public class UserAction extends ActionSupport{
 		String user_code = request.getParameter("user_code");
 		
 		user = UserService.QueryUserByPhone(user_phone);
+		//System.out.println(user_phone);
+		//System.out.println(user.toString());
 		if(user == null) {
 			out.println("NoUser");
 			out.flush(); 
@@ -257,6 +275,23 @@ public class UserAction extends ActionSupport{
 				out.flush(); 
 				out.close();
 				return ;
+			}
+			else {
+				HttpSession session  = request.getSession();
+				String checkcode = (String)session.getAttribute("code");
+				if(checkcode.endsWith(user_code)) {
+					request.getSession().setAttribute("user_phone", user_phone);
+					out.println("Success");
+					out.flush(); 
+					out.close();
+					return ;
+				}
+				else {
+					out.println("WrongCode");
+					out.flush(); 
+					out.close();
+					return ;
+				}
 			}
 		}
 		
@@ -287,6 +322,22 @@ public class UserAction extends ActionSupport{
 	        out.flush(); 
 	        out.close();
 		}
+	}
+	
+	public void SendCode() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		String user_phone = request.getParameter("user_phone");
+		SmsUtil su = new SmsUtil();
+		
+		int code = su.ProduceCode();
+		su.sendSms(user_phone, code, 1);
+		request.getSession().setAttribute("code", code);
 	}
 	
 	public void ReadExcel() throws Exception{

@@ -11,6 +11,32 @@ function getQueryVariable(variable)
 
 var code = getQueryVariable("code");
 
+function SendCode(){
+	var account = $("#account").val();
+	
+	if(account == "" || account == null){
+		alert("输入为空");
+	}
+	else{
+		$.post(
+				"SendCode.action",
+				{
+					user_phone:account,
+				},
+				function(data){
+					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+					if(data == "Fail"){
+						alert("没有发送成功！");
+					}
+					else{
+						alert("已发送验证码！");
+					}
+				}
+				);
+	}
+
+}
+
 function login(){
 	
 	var account = $("#account").val();
@@ -22,16 +48,21 @@ function login(){
 		$.post(
 				"Login.action",
 				{
-					user_number:account,
-					user_password:password
+					user_phone:account,
+					user_code:password
 				},
 				function(data){
 					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-					if(data == "Fail"){
+					if(data == "NoUser"){
 						alert("用户不存在！");
 					}
-					else if(data == "Wrong"){
-						alert("密码错误！");
+					else if(data == "NoRegister"){
+						alert("未注册，请先注册！");
+						var url = "Register.html?code=" + code;
+					    window.location.replace(url);
+					}
+					else if(data == "WrongCode"){
+						alert("验证码错误！");
 					}
 					else if(data == "Success"){
 						window.close();

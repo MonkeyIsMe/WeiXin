@@ -1,5 +1,7 @@
 package com.csu.util;
 
+import java.util.Random;
+
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.CommonRequest;
 import com.aliyuncs.CommonResponse;
@@ -11,13 +13,17 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 
 public class SmsUtil {
+	
+    public static final int START = 100000;   //定义范围开始数字
+    public static final int END = 999999; //定义范围结束数字
+	
     private static final String regionId = PropertyUtil.getProperty("config","smsRegionId");
     private static final String accessKeyId = PropertyUtil.getProperty("config","smsAccessKeyId");
     private static final String accessSecret = PropertyUtil.getProperty("config","smsAccessSecret");
     private static final String domain = PropertyUtil.getProperty("config","smsDomain");
     private static final String version = PropertyUtil.getProperty("config","smsVersion");
     private static final String action = PropertyUtil.getProperty("config","smsAction");
-    private static final String smsSignNameRegister = PropertyUtil.getProperty("config","smsSignNameRegister");
+    private static final String smsSignNameRegister = "计算机门户注册";
     private static final String smsTemplateCodeRegister = PropertyUtil.getProperty("config","smsTemplateCodeRegister");
     private static final String smsSignNameFind = PropertyUtil.getProperty("config","smsSignNameFind");
     private static final String smsTemplateCodeFind = PropertyUtil.getProperty("config","smsTemplateCodeFind");
@@ -55,5 +61,11 @@ public class SmsUtil {
         return null;
     }
 
+    public int ProduceCode(){
+    	
+    	Random random = new Random();
+    	int number = random.nextInt(END - START + 1) + START;
+    	return number;
+    }
 
 }

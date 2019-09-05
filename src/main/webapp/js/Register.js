@@ -11,14 +11,36 @@ function getQueryVariable(variable)
 
 var code = getQueryVariable("code");
 
+function SendCode(){
+	var account = $("#account").val();
+	
+	if(account == "" || account == null){
+		alert("输入为空");
+	}
+	else{
+		$.post(
+				"SendCode.action",
+				{
+					user_phone:account,
+				},
+				function(data){
+					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+					if(data == "Fail"){
+						alert("没有发送成功！");
+					}
+					else{
+						alert("已发送验证码！");
+					}
+				}
+				);
+	}
+
+}
+
 function Register(){
 	
 	var account = $("#account").val();
 	var password = $("#pwd").val();
-	var name = $("#name").val();
-	var phone = $("#phone").val();
-	var select_company = $("#select_company option:selected").val();
-	var select_role = $("#select_role option:selected").val();
 	
 	
 	var flag = 0;
@@ -35,14 +57,21 @@ function Register(){
 						$.post(
 								"UpdateUser.action",
 								{
-									ali_code:ali_code,
+									ali_code:password,
 									user_phone:phone,
 									code:code,
 								},
 								function(data){
 									data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-									alert("注册成功！");
-									window.location.replace("Login.html");
+									if(data == "Fail"){
+										alert("用户不存在！");
+									}
+									else if(data == "WrongCode"){
+										alert("验证码错误！");
+									}
+									else if(data == "Success"){
+										window.close();
+									}
 								}
 						);
 				}
