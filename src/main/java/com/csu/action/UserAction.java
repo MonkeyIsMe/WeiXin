@@ -297,4 +297,45 @@ public class UserAction extends ActionSupport{
 	        out.close();
 		}
 	}
+	
+	public void ReadExcel() throws Exception{
+		
+		ServletActionContext.getResponse().setContentType("text/html; charset=utf-8");
+		HttpServletRequest request= ServletActionContext.getRequest();
+		
+		//返回结果
+		PrintWriter out = null;
+		out = ServletActionContext.getResponse().getWriter();
+		
+		String user_info = request.getParameter("user_info");
+		
+		JSONArray ja = JSONArray.fromObject(user_info);
+		JSONArray add_ja = new JSONArray();
+		
+		for(int i = 0; i < ja.size(); i ++) {
+			
+			JSONObject jo = ja.getJSONObject(i);
+			
+			String user_name = jo.getString("姓名");
+			String user_number = jo.getString("学号");
+			String user_phone = jo.getString("电话号码");
+			String user_year = jo.getString("年份");
+			String user_place = jo.getString("所属基地");
+			String user_role = jo.getString("角色");
+			
+			user.setUserCompany(user_place);
+			user.setUserRole(user_role);
+			user.setUserName(user_name);
+			user.setUserNumber(user_number);
+			user.setUserPhone(user_phone);
+			user.setUserYear(user_year);
+			
+			JSONObject add_jo = JSONObject.fromObject(user);
+			add_ja.add(add_jo);
+		}
+		
+		List<User> UserList = JSONArray.toList(add_ja,User.class);
+		UserService.AddMutiplyUser(UserList);
+		
+	}
 }

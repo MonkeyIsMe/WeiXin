@@ -246,6 +246,11 @@ $(document).ready(function(){
 	  
 })
 
+
+function add_excel(){
+	window.location.replace("add_excel.html");
+}
+
 function refresh(){
 	window.location.replace("UserManage.html");
 }

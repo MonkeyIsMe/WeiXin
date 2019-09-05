@@ -21,4 +21,6 @@ public interface UserService {
 	public List<User> GetAllUserByPageSize(int row,int PageSize);	
 	
 	public int CountUser();	
+	
+	public Object AddMutiplyUser(List<User> user);
 }

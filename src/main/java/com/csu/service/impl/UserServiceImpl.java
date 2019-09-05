@@ -65,6 +65,11 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return ud.CountUser();
 	}
+
+	public Object AddMutiplyUser(List<User> user) {
+		// TODO Auto-generated method stub
+		return ud.AddMutiplyUser(user);
+	}
 	
 	
 	

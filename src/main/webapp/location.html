@@ -64,8 +64,11 @@ $(function(){
 				console.log(res);
 				var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
 				var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-				var speed = res.speed; // 速度，以米/每秒计
-				alert(latitude + " " + longitude);
+				//var speed = res.speed; // 速度，以米/每秒计
+				//alert(latitude + " " + longitude);
+				if(longitude <= 112.882852 && longitude >= 112.880852 && latitude >= 28.23468&& latitude <= 28.23668)
+				alert("打卡成功！");
+				else alert("打卡失败！");
 				// var accuracy = res.accuracy; // 位置精度
 				//调用当前位置初始化方法
 				// fmp.GPSlocation.initLocateInfo(res);

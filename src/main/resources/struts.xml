@@ -75,6 +75,8 @@
 			</action>
 			<action name="Login" class="UserAction" method="Login" >
 			</action>
+			<action name="ReadExcel" class="UserAction" method="ReadExcel" >
+			</action>
 			
 			<action name="AddCompany" class="CompanyAction" method="AddCompany" >
 			</action>

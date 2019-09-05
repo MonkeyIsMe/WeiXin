@@ -88,4 +88,23 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
 		return ((Long)getHibernateTemplate().iterate(hql).next()).intValue();
 	}
 
+	public Object AddMutiplyUser(final List<User> user) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<Object>() {
+
+			public Object doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				for(int i = 0; i < user.size(); i ++) {
+					session.save(user.get(i));
+                    if (i % 50 == 0) {  
+                        session.flush();  
+                        session.clear();  
+                    }  
+				}
+				return null;
+			}
+			
+		});
+	}
+
 }
