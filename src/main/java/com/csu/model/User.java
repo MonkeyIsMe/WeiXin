@@ -41,6 +41,9 @@ public class User {
 	
 	@Column(name="user_year")
 	private String UserYear;
+	
+	@Column(name="user_flag")
+	private String UserFlag;
 
 	public int getUserId() {
 		return UserId;
@@ -113,6 +116,14 @@ public class User {
 		UserYear = userYear;
 	}
 
+	public String getUserFlag() {
+		return UserFlag;
+	}
+
+	public void setUserFlag(String userFlag) {
+		UserFlag = userFlag;
+	}
+
 	public JSONObject toJSON() {
 		JSONObject jo = new JSONObject();
 		jo.put("UserId", this.UserId);
@@ -124,7 +135,7 @@ public class User {
 		jo.put("UserName", this.UserName);
 		jo.put("UserPassword", this.UserPassword);
 		jo.put("UserYear", this.UserYear);
-		
+		jo.put("UserFlag", this.UserFlag);
 		return jo;
 	}
 	

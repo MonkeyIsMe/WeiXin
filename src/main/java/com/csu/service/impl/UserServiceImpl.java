@@ -70,6 +70,15 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return ud.AddMutiplyUser(user);
 	}
+
+	public User QueryUserByPhone(String Phone) {
+		// TODO Auto-generated method stub
+		User user = null;
+		List<User> UserList = ud.QueryUserByPhone(Phone);
+		if(UserList.size() == 0 ) return user;
+		user = UserList.get(0);
+		return user;
+	}
 	
 	
 	

@@ -23,4 +23,6 @@ public interface UserService {
 	public int CountUser();	
 	
 	public Object AddMutiplyUser(List<User> user);
+	
+	public User QueryUserByPhone(String Phone);
 }

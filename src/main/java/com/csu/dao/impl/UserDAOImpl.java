@@ -107,4 +107,20 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
 		});
 	}
 
+	public List<User> QueryUserByPhone(final String Phone) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().execute(new HibernateCallback<List<User>>() {
+
+			public List<User> doInHibernate(Session session) throws HibernateException {
+				// TODO Auto-generated method stub
+				String hql = "from User where user_phone = ?";
+				Query query = session.createQuery(hql);
+				query.setParameter(0,Phone);
+				List<User> result = null;
+				result = query.list();
+				return result;
+			}
+		});
+	}
+
 }

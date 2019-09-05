@@ -84,16 +84,11 @@ public class UserAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String user_number = request.getParameter("user_number");
+		String code = request.getParameter("code");
 		String user_phone = request.getParameter("user_phone");
-		String user_role = request.getParameter("user_role");
-		String user_company = request.getParameter("user_company");
-		String user_name = request.getParameter("user_name");
-		String user_id = request.getParameter("user_id");
+		String ali_code = request.getParameter("ali_code");
 		
-		int uid = Integer.valueOf(user_id);
-		
-		user = UserService.QueryUser(uid);
+		user = UserService.QueryUserByPhone(user_phone);
 		
 		if(user == null) {
 			out.println("Fail");
@@ -102,11 +97,9 @@ public class UserAction extends ActionSupport{
 			return ;
 		}
 				
-		user.setUserNumber(user_number);
 		user.setUserPhone(user_phone);
-		user.setUserRole(user_role);
-		user.setUserCompany(user_company);
-		user.setUserName(user_name);
+		user.setUserAppid(code);
+		user.setUserFlag("1");
 		
 		UserService.UpdateUser(user);
 	}
@@ -247,28 +240,26 @@ public class UserAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String user_number = request.getParameter("user_number");
-		String user_password = request.getParameter("user_password");
+		String user_phone = request.getParameter("user_phone");
+		String user_code = request.getParameter("user_code");
 		
-		user = UserService.QueryUserByNumber(user_number);
-		
-		
+		user = UserService.QueryUserByPhone(user_phone);
 		if(user == null) {
-			out.println("Fail");
+			out.println("NoUser");
 			out.flush(); 
 			out.close();
 			return ;
 		}
-		else if(user.getUserPassword().endsWith(user_password)) {
-			out.println("Success");
-	        out.flush(); 
-	        out.close();
-		}
 		else {
-			out.println("Wrong");
-	        out.flush(); 
-	        out.close();
+			String flag = user.getUserFlag();
+			if(flag.endsWith("0")) {
+				out.println("NoRegister");
+				out.flush(); 
+				out.close();
+				return ;
+			}
 		}
+		
 	}
 	
 	public void UserIsExist() throws Exception{
@@ -280,10 +271,10 @@ public class UserAction extends ActionSupport{
 		PrintWriter out = null;
 		out = ServletActionContext.getResponse().getWriter();
 		
-		String user_number = request.getParameter("user_number");
+		String user_phone = request.getParameter("user_phone");
 		
 		
-		user = UserService.QueryUserByNumber(user_number);
+		user = UserService.QueryUserByPhone(user_phone);
 		
 		if(user == null) {
 			out.println("Fail");
@@ -329,6 +320,7 @@ public class UserAction extends ActionSupport{
 			user.setUserNumber(user_number);
 			user.setUserPhone(user_phone);
 			user.setUserYear(user_year);
+			user.setUserFlag("0");
 			
 			JSONObject add_jo = JSONObject.fromObject(user);
 			add_ja.add(add_jo);

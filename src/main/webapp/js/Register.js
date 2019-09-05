@@ -26,22 +26,18 @@ function Register(){
 	$.post(
 			"UserIsExist.action",
 			{
-				user_number:account,
+				user_phone:account,
 			},
 			function(data){
 				data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-				if(data == "Fail"){
+				if(data == "Success"){
 						
 						$.post(
-								"AddUser.action",
+								"UpdateUser.action",
 								{
-									user_number:account,
+									ali_code:ali_code,
 									user_phone:phone,
 									code:code,
-									user_role:select_role,
-									user_company:select_company,
-									user_name:name,
-									user_password:password,
 								},
 								function(data){
 									data = data.replace(/^\s*/, "").replace(/\s*$/, "");
@@ -51,7 +47,7 @@ function Register(){
 						);
 				}
 				else{
-					alert("用户已经存在");
+					alert("用户不存在");
 				}
 			}
 			);
