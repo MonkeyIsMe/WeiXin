@@ -58,7 +58,7 @@ function Register(){
 								"UpdateUser.action",
 								{
 									ali_code:password,
-									user_phone:phone,
+									user_phone:account,
 									code:code,
 								},
 								function(data){
