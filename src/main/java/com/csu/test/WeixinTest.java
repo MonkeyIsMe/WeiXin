@@ -50,7 +50,7 @@ public class WeixinTest {
 	@Test
 	public void sendcode() throws UnsupportedEncodingException {
 		SmsUtil su = new SmsUtil();
-		String msg = su.sendSms("13617305586", 123123, 1);
+		String msg = su.sendSms("18692150123", su.ProduceCode(), 1);
 		System.out.println(msg);
 	}
 	
