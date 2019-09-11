@@ -25,8 +25,8 @@ $(function(){
             function(data) {
             	var data = JSON.parse(data);
             	//console.log(data);
-            	editor.setData(data.planInfo);
-            	$("#tittle").val(data.planTittle);
+            	editor.setData(data.introductionInfo);
+            	$("#tittle").val(data.introductionTittle);
             	$('#select_company').find("option[value='"+data.companyName+"']").attr("selected",true);
             }
     );

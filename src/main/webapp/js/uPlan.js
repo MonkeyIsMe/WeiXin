@@ -26,6 +26,7 @@ $(function(){
             	var data = JSON.parse(data);
             	//console.log(data);
             	editor.setData(data.planInfo);
+            	console.log(data.planInfo);
             	$("#tittle").val(data.planTittle);
             	$('#select_company').find("option[value='"+data.companyName+"']").attr("selected",true);
             	$('#select_time').find("option[value='"+data.timeId+"']").attr("selected",true);
