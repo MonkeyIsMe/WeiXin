@@ -398,8 +398,8 @@ public class UserAction extends ActionSupport{
 		
 		HttpSession session  = request.getSession();
 		String user_phone = (String)session.getAttribute("user_phone");
-		
-		if(user_phone == null) {
+		System.out.println("user_phone = " + user_phone);
+		if(user_phone == null || user_phone == "" || user_phone.equals("")) {
 			out.println("Fail");
 			out.flush(); 
 			out.close();
@@ -409,6 +409,9 @@ public class UserAction extends ActionSupport{
 			DateUtil du = new DateUtil();
 			user.setUserSign(du.GetNowDate());
 			UserService.UpdateUser(user);
+			out.println("Success");
+			out.flush(); 
+			out.close();
 		}
 		
 	}

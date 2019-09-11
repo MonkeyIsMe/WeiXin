@@ -79,6 +79,8 @@
 			</action>
 			<action name="SendCode" class="UserAction" method="SendCode" >
 			</action>
+			<action name="IsLogin" class="UserAction" method="IsLogin" >
+			</action>
 			
 			<action name="AddCompany" class="CompanyAction" method="AddCompany" >
 			</action>

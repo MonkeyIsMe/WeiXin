@@ -73,7 +73,7 @@ $(function(){
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].planTittle +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].timeId +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" +data[i].companyName +"</td>");
-			        $trTemp.append("<td style=" + "text-align:center;height:100px;overflow:hidden;width:60%"  + ">" +data[i].planInfo +"</td>");
+			        $trTemp.append("<td style=" + "text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;height:30px;table-layout:fixed;"  + ">" +data[i].planInfo.substr(30,80) +"</td>");
 			        $trTemp.append("<td style=" + "text-align:center"  + ">" + 
 			        		'<a ><span class="delete check glyphicon glyphicon-pencil" style="cursor:pointer;margin-left:35px"></span></a>'
 			        		+'<a ><span class="delete work glyphicon glyphicon-align-justify" style="cursor:pointer;margin-left:20px" data-toggle="modal" data-target="#myModal"></span></a>'

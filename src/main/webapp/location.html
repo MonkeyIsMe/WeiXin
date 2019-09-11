@@ -41,6 +41,24 @@ $(function(){
 				signature = data.signature;
 			}
 			);
+	
+	var flag = 1;
+	
+	$.post(
+			"IsLogin.action",
+			{
+				
+			},
+			function(data){
+				data = data.replace(/^\s*/, "").replace(/\s*$/, "");
+				if(data == "Fail"){
+					alert("data =" + data);
+					flag = 0;
+					alert("打卡失败！，请先登录！");
+					window.close();
+				}
+			}
+			);
 	//console.log("signature =" + signature);
 	wx.config({
 		 debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -66,9 +84,12 @@ $(function(){
 				var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
 				//var speed = res.speed; // 速度，以米/每秒计
 				//alert(latitude + " " + longitude);
-				if(longitude <= 112.882852 && longitude >= 112.880852 && latitude >= 28.23468&& latitude <= 28.23668)
-				alert("打卡成功！");
-				else alert("打卡失败！");
+				alert("flag = " + flag);
+				if(flag == 1){
+					if(longitude <= 112.882852 && longitude >= 112.880852 && latitude >= 28.23468&& latitude <= 28.23668)
+						alert("打卡成功！");
+					else alert("打卡失败！");
+				}
 				// var accuracy = res.accuracy; // 位置精度
 				//调用当前位置初始化方法
 				// fmp.GPSlocation.initLocateInfo(res);
