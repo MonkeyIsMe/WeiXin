@@ -27,6 +27,9 @@ import com.csu.service.UserService;
 import com.csu.util.HibernateUtil;
 import com.csu.util.SmsUtil;
 import com.csu.util.WeixinUtil;
+import com.google.gson.JsonObject;
+
+import net.sf.json.JSONObject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -52,6 +55,9 @@ public class WeixinTest {
 		SmsUtil su = new SmsUtil();
 		String msg = su.sendSms("18692150123", su.ProduceCode(), 1);
 		System.out.println(msg);
+		JSONObject jo = JSONObject.fromObject(msg);
+		System.out.println(jo.get("Message"));
+		
 	}
 	
 	@Test

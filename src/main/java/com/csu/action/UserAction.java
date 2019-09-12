@@ -340,9 +340,20 @@ public class UserAction extends ActionSupport{
 		SmsUtil su = new SmsUtil();
 		
 		int code = su.ProduceCode();
-		su.sendSms(user_phone, code, 1);
+		String msg = su.sendSms(user_phone, code, 1);
+		JSONObject jo = JSONObject.fromObject(msg);
 		String c = String.valueOf(code);
 		request.getSession().setAttribute("code", c);
+		if(jo.get("Message").equals("OK")) {
+			out.println("Success");
+			out.flush(); 
+			out.close();
+		}
+		else {
+			out.println("Fail");
+			out.flush(); 
+			out.close();
+		}
 	}
 	
 	public void ReadExcel() throws Exception{

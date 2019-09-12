@@ -25,11 +25,11 @@ function SendCode(){
 				},
 				function(data){
 					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-					if(data == "Fail"){
-						alert("没有发送成功！");
+					if(data == "Success"){
+						alert("已发送验证码！");
 					}
 					else{
-						alert("已发送验证码！");
+						alert("没有发送成功！");
 					}
 				}
 				);
@@ -70,6 +70,9 @@ function Register(){
 										alert("验证码错误！");
 									}
 									else if(data == "Success"){
+										alert("注册成功，请返回登录！");
+										var url = "Login.html";
+									    window.location.replace(url);
 										window.close();
 									}
 								}

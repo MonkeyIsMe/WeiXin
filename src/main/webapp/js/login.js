@@ -25,11 +25,11 @@ function SendCode(){
 				},
 				function(data){
 					data = data.replace(/^\s*/, "").replace(/\s*$/, "");
-					if(data == "Fail"){
-						alert("没有发送成功！");
+					if(data == "Success"){
+						alert("已发送验证码！");
 					}
 					else{
-						alert("已发送验证码！");
+						alert("没有发送成功！");
 					}
 				}
 				);

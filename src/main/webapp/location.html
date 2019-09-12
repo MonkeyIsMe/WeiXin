@@ -52,7 +52,6 @@ $(function(){
 			function(data){
 				data = data.replace(/^\s*/, "").replace(/\s*$/, "");
 				if(data == "Fail"){
-					alert("data =" + data);
 					flag = 0;
 					alert("打卡失败！，请先登录！");
 					window.close();
@@ -84,7 +83,6 @@ $(function(){
 				var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
 				//var speed = res.speed; // 速度，以米/每秒计
 				//alert(latitude + " " + longitude);
-				alert("flag = " + flag);
 				if(flag == 1){
 					if(longitude <= 112.882852 && longitude >= 112.880852 && latitude >= 28.23468&& latitude <= 28.23668)
 						alert("打卡成功！");
